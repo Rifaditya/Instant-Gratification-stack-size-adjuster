@@ -13,7 +13,13 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
   - **16-Stack Limit**: Snowballs, eggs, ender pearls, etc. (Default: `16`)
   - **1-Stack Limit**: Tools, weapons, armor, potions, stews, etc. (Default: `1`)
 - **Raw Integer Values**: Configure stack limits to any custom integer value up to `2,147,483,647` (no limit clamping!).
-  - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `79,536,431` to prevent total-container overflows if you fill a 27-slot container (like a Shulker Box) completely with the *same* item. However, if you are storing *different* item types, you can safely use the absolute limit of `2,147,483,647` per slot since the game tracks and serializes slots independently!
+  - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `79,536,431` to prevent total-container overflows if you fill a container completely with the *same* item. Below is the maximum safe limit per slot when fully filling a container with identical items:
+    * **Hopper (5 slots)**: `429,496,729` max per slot
+    * **Dispenser / Dropper (9 slots)**: `238,609,294` max per slot
+    * **Single Chest / Shulker Box / Barrel (27 slots)**: `79,536,431` max per slot
+    * **Player Inventory (36 slots)**: `59,652,323` max per slot
+    * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
+    - *Note on Different Items*: If you are storing *different* item types in the same container, you can safely use the absolute maximum limit of `2,147,483,647` per slot since the game tracks and serializes slots independently!
 - **Slot Capacity Bypass**: Bypasses Minecraft's default slot-level count limits, allowing inventory slots to hold over 99 items cleanly.
 - **Dynamic Count Text Scaling**: Inventory count numbers automatically scale down when they exceed 99 to fit inside slot boundaries without overlapping adjacent slots.
 - **Modded Item Compatibility**: Automatically recognizes and scales stack sizes for modded items based on their default base limits.
