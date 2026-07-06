@@ -30,7 +30,7 @@ Configure limits for the three standard Minecraft item categories:
 
 ### 🔢 Raw Integer Values
 No more artificial caps! Adjust limits dynamically to any integer value from `1` up to `2,147,483,647`.
-- **Overflow Protection Warning**: The configuration GUI features a dynamic warning tooltip that alerts you if a limit is set above `79,536,431`. This threshold is specifically to prevent total-container overflows when filling containers completely with the *same* item type. Below is a reference of safe maximum limits per slot when fully filling a container with identical items:
+- **Overflow Protection Warning**: The configuration GUI features a dynamic warning tooltip that alerts you if a limit is set above `39,768,215`. This threshold is specifically to prevent total-container overflows when filling containers completely with the *same* item type. Below is a reference of safe maximum limits per slot when fully filling a container with identical items:
   * **Hopper (5 slots)**: `429,496,729` max per slot
   * **Dispenser / Dropper (9 slots)**: `238,609,294` max per slot
   * **Single Chest / Shulker Box / Barrel (27 slots)**: `79,536,431` max per slot

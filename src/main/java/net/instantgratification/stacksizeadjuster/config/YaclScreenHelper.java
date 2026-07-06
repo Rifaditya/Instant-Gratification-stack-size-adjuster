@@ -30,7 +30,7 @@ public class YaclScreenHelper {
                     .option(Option.<Integer>createBuilder()
                         .name(Component.translatable("config.stacksizeadjuster.option.limit_64"))
                         .description(val -> {
-                            if (val > 79536431) {
+                            if (val > 39768215) {
                                 return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
                             }
                             return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_64.description"));
@@ -51,7 +51,7 @@ public class YaclScreenHelper {
                     .option(Option.<Integer>createBuilder()
                         .name(Component.translatable("config.stacksizeadjuster.option.limit_16"))
                         .description(val -> {
-                            if (val > 79536431) {
+                            if (val > 39768215) {
                                 return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
                             }
                             return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_16.description"));
@@ -72,7 +72,7 @@ public class YaclScreenHelper {
                     .option(Option.<Integer>createBuilder()
                         .name(Component.translatable("config.stacksizeadjuster.option.limit_1"))
                         .description(val -> {
-                            if (val > 79536431) {
+                            if (val > 39768215) {
                                 return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
                             }
                             return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_1.description"));
