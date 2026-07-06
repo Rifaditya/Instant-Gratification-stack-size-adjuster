@@ -10,7 +10,7 @@
 ### 🎮 Version Compatibility & Parity
 
 This mod is active and fully supported:
-* **Minecraft 26.2+**: Current public release — **`v1.0.6`**
+* **Minecraft 26.2+**: Current public release — **`v1.0.1`**
 
 > **Take Control of Your Inventory. Custom Limits, No Boundaries.**
 
