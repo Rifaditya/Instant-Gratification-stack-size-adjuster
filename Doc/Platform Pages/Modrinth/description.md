@@ -30,6 +30,7 @@ Configure limits for the three standard Minecraft item categories:
 
 ### 🔢 Raw Integer Values
 No more artificial caps! Adjust limits dynamically to any integer value from `1` up to `2,147,483,647`.
+- **Overflow Protection Warning**: The configuration GUI features a dynamic warning tooltip that alerts you if a limit is set above `1,000,000,000` (1 billion), recommending safe limits to avoid signed 32-bit integer overflows when merging stacks in inventories.
 
 ### 🔓 Slot Capacity Bypass
 Say goodbye to the standard slot stack limit of 99 items. Stack Size Adjuster overrides the default container and stack serializer limits, allowing you to hold massive stacks (e.g., `640` or `1000`) in any chest, hopper, or inventory slot.
