@@ -31,7 +31,7 @@ Change stack size limits using `/gamerule` in-game or via the config GUI:
 
 ## 📦 Installation
 
-1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
+1. Install **Fabric API**.
 2. Download the mod jar and place it in your `mods` folder.
 3. Launch the game.
 
@@ -45,6 +45,5 @@ Change stack size limits using `/gamerule` in-game or via the config GUI:
 
 ---
 
-> **Modpack Permissions:** You are free to include this mod in modpacks, **provided the modpack is hosted on the same platform** (e.g. Modrinth).
->
-> **Cross-platform distribution is not permitted.** If you download this mod from Modrinth, your modpack must also be published on Modrinth.
+> [!WARNING]
+> **Modpack Permissions:** You are free to include this mod in modpacks, **provided the modpack is hosted on the same platform** (e.g. Modrinth). Cross-platform redistribution is not permitted. If you download this mod from Modrinth, your modpack must also be published on Modrinth.
