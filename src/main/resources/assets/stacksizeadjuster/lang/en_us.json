@@ -8,12 +8,12 @@
   "config.stacksizeadjuster.option.limit_16.description": "Limit for items that normally stack to 16. Default: 32. (Recommended: 39,768,215 or lower to prevent container overflows.)",
   "config.stacksizeadjuster.option.limit_1": "1-Stack Limit",
   "config.stacksizeadjuster.option.limit_1.description": "Limit for items that normally do not stack. Default: 1. (Recommended: 39,768,215 or lower to prevent container overflows.)",
-  "config.stacksizeadjuster.option.warning": "⚠️ WARNING: Do you really want to set the value to %d? Large stack counts (millions/billions) can cause game lag/stutter when moving or sorting items! Additionally, setting values above 39,768,215 is highly likely to cause Large Chest total counts to overflow the 2.14 billion integer limit and delete your items! 39,768,215 or lower is strongly recommended.",
+  "config.stacksizeadjuster.option.warning": "⚠️ WARNING: Do you really want to set the value to %d? Large stack counts (millions/billions) can cause game lag/stutter when moving or sorting items! Additionally, setting values above 39,768,215 is highly likely to cause Large Chest total counts to overflow the 2.14 billion integer limit and delete your items! 39,768,215 or lower is strongly recommended. Change it at your own risk!",
   "gamerule.category.stack-size-adjuster.stack-size-adjuster": "Stack Size Adjuster",
   "gamerule.stack-size-adjuster.items_64_limit": "64-Stack Limit",
-  "gamerule.stack-size-adjuster.items_64_limit.description": "Maximum stack size for items that naturally stack to 64. WARNING: Keep under 39,768,215 to prevent Large Chest integer overflows and item movement lag.",
+  "gamerule.stack-size-adjuster.items_64_limit.description": "Maximum stack size for items that naturally stack to 64. WARNING: Keep under 39,768,215 to prevent Large Chest integer overflows and item movement lag. Change it at your own risk!",
   "gamerule.stack-size-adjuster.items_16_limit": "16-Stack Limit",
-  "gamerule.stack-size-adjuster.items_16_limit.description": "Maximum stack size for items that naturally stack to 16. WARNING: Keep under 39,768,215 to prevent Large Chest integer overflows and item movement lag.",
+  "gamerule.stack-size-adjuster.items_16_limit.description": "Maximum stack size for items that naturally stack to 16. WARNING: Keep under 39,768,215 to prevent Large Chest integer overflows and item movement lag. Change it at your own risk!",
   "gamerule.stack-size-adjuster.items_1_limit": "1-Stack Limit",
-  "gamerule.stack-size-adjuster.items_1_limit.description": "Maximum stack size for items that naturally stack to 1. WARNING: Keep under 39,768,215 to prevent Large Chest integer overflows and item movement lag."
+  "gamerule.stack-size-adjuster.items_1_limit.description": "Maximum stack size for items that naturally stack to 1. WARNING: Keep under 39,768,215 to prevent Large Chest integer overflows and item movement lag. Change it at your own risk!"
 }

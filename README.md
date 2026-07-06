@@ -13,7 +13,7 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
   - **16-Stack Limit**: Snowballs, eggs, ender pearls, etc. (Default: `32`)
   - **1-Stack Limit**: Tools, weapons, armor, potions, stews, etc. (Default: `1`)
 - **Raw Integer Values**: Configure stack limits to any custom integer value up to `2,147,483,647` (no limit clamping!).
-  - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `39,768,215` to prevent total-container overflows if you fill a container completely with the *same* item.
+  - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `39,768,215` to prevent total-container overflows if you fill a container completely with the *same* item. **Change it at your own risk!**
     * *⚠️ Performance Note*: Moving or sorting extremely large item stacks (millions or billions) can cause transient game lag or frame stutter due to CPU calculation load.
     * *🎒 Modded Container / Backpack Safety Formula*: If you are using custom containers or modded backpacks, you can calculate the maximum safe stack size to fully fill the container without overflow using this formula:
       `Safe Stack Limit = 2,147,483,647 / [Total Slots in Container]`
