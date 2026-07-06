@@ -23,7 +23,6 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
       * **Hopper (5 slots)**: `429,496,729` max per slot
       * **Dispenser / Dropper (9 slots)**: `238,609,294` max per slot
       * **Single Chest / Shulker Box / Barrel (27 slots)**: `79,536,431` max per slot
-      * **Player Inventory (36 slots)**: `59,652,323` max per slot
       * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
     - *Note on Different Items*: If you are storing *different* item types in the same container, you can safely use the absolute maximum limit of `2,147,483,647` per slot since the game tracks and serializes slots independently!
     - *Flat vs. Nested Storage Safety*:

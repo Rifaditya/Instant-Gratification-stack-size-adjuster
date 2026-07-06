@@ -40,7 +40,6 @@ No more artificial caps! Adjust limits dynamically to any integer value from `1`
     * **Hopper (5 slots)**: `429,496,729` max per slot
     * **Dispenser / Dropper (9 slots)**: `238,609,294` max per slot
     * **Single Chest / Shulker Box / Barrel (27 slots)**: `79,536,431` max per slot
-    * **Player Inventory (36 slots)**: `59,652,323` max per slot
     * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
   - *Note on Different Items*: If you are storing *different* item types in the same container, you can safely go up to the absolute limit of `2,147,483,647` per slot since the game saves and tracks different item types independently!
   - *Flat vs. Nested Storage Safety*:
