@@ -13,12 +13,18 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
   - **16-Stack Limit**: Snowballs, eggs, ender pearls, etc. (Default: `32`)
   - **1-Stack Limit**: Tools, weapons, armor, potions, stews, etc. (Default: `1`)
 - **Raw Integer Values**: Configure stack limits to any custom integer value up to `2,147,483,647` (no limit clamping!).
-  - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `39,768,215` to prevent total-container overflows if you fill a container completely with the *same* item. Below is the maximum safe limit per slot when fully filling a container with identical items:
-    * **Hopper (5 slots)**: `429,496,729` max per slot
-    * **Dispenser / Dropper (9 slots)**: `238,609,294` max per slot
-    * **Single Chest / Shulker Box / Barrel (27 slots)**: `79,536,431` max per slot
-    * **Player Inventory (36 slots)**: `59,652,323` max per slot
-    * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
+  - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `39,768,215` to prevent total-container overflows if you fill a container completely with the *same* item.
+    * *⚠️ Performance Note*: Moving or sorting extremely large item stacks (millions or billions) can cause transient game lag or frame stutter due to CPU calculation load.
+    * *🎒 Modded Container / Backpack Safety Formula*: If you are using custom containers or modded backpacks, you can calculate the maximum safe stack size to fully fill the container without overflow using this formula:
+      `Safe Stack Limit = 2,147,483,647 / [Total Slots in Container]`
+      * **100-slot container**: `21,474,836` max per slot
+      * **200-slot container**: `10,737,418` max per slot
+    * *Safe Reference List (for identical items)*:
+      * **Hopper (5 slots)**: `429,496,729` max per slot
+      * **Dispenser / Dropper (9 slots)**: `238,609,294` max per slot
+      * **Single Chest / Shulker Box / Barrel (27 slots)**: `79,536,431` max per slot
+      * **Player Inventory (36 slots)**: `59,652,323` max per slot
+      * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
     - *Note on Different Items*: If you are storing *different* item types in the same container, you can safely use the absolute maximum limit of `2,147,483,647` per slot since the game tracks and serializes slots independently!
 - **Slot Capacity Bypass**: Bypasses Minecraft's default slot-level count limits, allowing inventory slots to hold over 99 items cleanly.
 - **Dynamic Count Text Scaling**: Inventory count numbers automatically scale down when they exceed 99 to fit inside slot boundaries without overlapping adjacent slots.
