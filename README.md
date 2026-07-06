@@ -16,7 +16,9 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
   - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `39,768,215` to prevent total-container overflows if you fill a container completely with the *same* item. **Change it at your own risk!**
     * *⚠️ Performance Note*: Moving or sorting extremely large item stacks (millions or billions) can cause transient game lag or frame stutter due to CPU calculation load.
     * *🎒 Modded Container / Backpack Safety Formula*: If you are using custom containers or modded backpacks, you can calculate the maximum safe stack size to fully fill the container without overflow using this formula:
-      `Safe Stack Limit = 2,147,483,647 / [Total Slots in Container]`
+      
+      $$\text{Safe Stack Limit} = \frac{2,147,483,647}{\text{Total Slots in Container}}$$
+      
       * **100-slot container**: `21,474,836` max per slot
       * **200-slot container**: `10,737,418` max per slot
     * *Safe Reference List (for identical items)*:

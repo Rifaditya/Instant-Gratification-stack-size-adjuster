@@ -33,7 +33,9 @@ No more artificial caps! Adjust limits dynamically to any integer value from `1`
 - **Overflow Protection Warning**: The configuration GUI features a dynamic warning tooltip that alerts you if a limit is set above `39,768,215`. This threshold is specifically to prevent total-container overflows when filling containers completely with the *same* item type. **Change it at your own risk!**
   * *⚠️ Performance Note*: Moving or sorting extremely large item stacks (millions or billions) can cause transient game lag or frame stutter due to CPU calculation load.
   * *🎒 Modded Container / Backpack Safety Formula*: If you are using custom containers or modded backpacks, you can calculate the maximum safe stack size to fully fill the container without overflow using this formula:
-    `Safe Stack Limit = 2,147,483,647 / [Total Slots in Container]`
+    
+    $$\text{Safe Stack Limit} = \frac{2,147,483,647}{\text{Total Slots in Container}}$$
+    
     * **100-slot backpack**: `21,474,836` max per slot
     * **200-slot backpack**: `10,737,418` max per slot
   * *Safe Reference List (for identical items)*:
