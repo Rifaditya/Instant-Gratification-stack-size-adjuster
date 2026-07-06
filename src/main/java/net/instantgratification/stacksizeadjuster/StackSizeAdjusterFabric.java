@@ -39,13 +39,13 @@ public class StackSizeAdjusterFabric implements ModInitializer {
         // Register GameRules with dynamic defaults loaded from baseline config
         ITEMS_64_LIMIT = DynamicGameRuleManager.integerRule(MOD_ID + ":items_64_limit", CUSTOM_CATEGORY, StackSizeConfig.get().items64Limit)
             .name("64-Stack Limit")
-            .description("Maximum stack size for items that naturally stack to 64. Default: 64")
+            .description("Maximum stack size for items that naturally stack to 64. Default: 128")
             .range(1, Integer.MAX_VALUE)
             .register();
 
         ITEMS_16_LIMIT = DynamicGameRuleManager.integerRule(MOD_ID + ":items_16_limit", CUSTOM_CATEGORY, StackSizeConfig.get().items16Limit)
             .name("16-Stack Limit")
-            .description("Maximum stack size for items that naturally stack to 16. Default: 16")
+            .description("Maximum stack size for items that naturally stack to 16. Default: 32")
             .range(1, Integer.MAX_VALUE)
             .register();
 

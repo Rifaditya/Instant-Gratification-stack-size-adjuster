@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.3.2+26.2`** (2026-07-06) - - Doubled default stacks. - - Doubled standard stack defaults (64 limit to 128, 16 limit to 32) while keeping 1-stack items at 1.
 - [ ] **`1.3.1+26.2`** (2026-07-06) - - Shulker Box Warning Threshold. - - Set warning limit to 79,536,431 to prevent container-wide overflow when filling a Shulker Box.
 - [ ] **`1.3.0+26.2`** (2026-07-06) - - Serialization range fix. - - Lifted serialization range checks from DataComponents (for shulker box contents) and ItemStackTemplate (for bundles) to allow saving items above 99.
 - [ ] **`1.2.0+26.2`** (2026-07-06) - - Live client refresh. - - Force client container and inventory update when server game rules change, preventing relog requirements.

@@ -36,7 +36,7 @@ public class YaclScreenHelper {
                             return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_64.description"));
                         })
                         .binding(
-                            64,
+                            128,
                             () -> config.items64Limit,
                             val -> config.items64Limit = val
                         )
@@ -57,7 +57,7 @@ public class YaclScreenHelper {
                             return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_16.description"));
                         })
                         .binding(
-                            16,
+                            32,
                             () -> config.items16Limit,
                             val -> config.items16Limit = val
                         )

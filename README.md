@@ -9,8 +9,8 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
 ## ✨ Features
 
 - **Category-Based Customization**: Configure limits for three default categories of items:
-  - **64-Stack Limit**: Blocks, raw food, ores, etc. (Default: `64`)
-  - **16-Stack Limit**: Snowballs, eggs, ender pearls, etc. (Default: `16`)
+  - **64-Stack Limit**: Blocks, raw food, ores, etc. (Default: `128`)
+  - **16-Stack Limit**: Snowballs, eggs, ender pearls, etc. (Default: `32`)
   - **1-Stack Limit**: Tools, weapons, armor, potions, stews, etc. (Default: `1`)
 - **Raw Integer Values**: Configure stack limits to any custom integer value up to `2,147,483,647` (no limit clamping!).
   - *Note on Limits & Storage*: The configuration GUI features a dynamic warning tooltip at `79,536,431` to prevent total-container overflows if you fill a container completely with the *same* item. Below is the maximum safe limit per slot when fully filling a container with identical items:

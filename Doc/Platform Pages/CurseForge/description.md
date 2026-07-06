@@ -24,8 +24,8 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
 
 ### 🎚️ Category-Based Customization
 Configure limits for the three standard Minecraft item categories:
-- **64-Stack Limit**: Standard stackable items (blocks, raw food, ores, building materials). Default: `64`.
-- **16-Stack Limit**: Semi-stackable items (ender pearls, snowballs, eggs, signs). Default: `16`.
+- **64-Stack Limit**: Standard stackable items (blocks, raw food, ores, building materials). Default: `128`.
+- **16-Stack Limit**: Semi-stackable items (ender pearls, snowballs, eggs, signs). Default: `32`.
 - **1-Stack Limit**: Unstackable items (weapons, tools, armor, potions, stews, beds). Default: `1`.
 
 ### 🔢 Raw Integer Values

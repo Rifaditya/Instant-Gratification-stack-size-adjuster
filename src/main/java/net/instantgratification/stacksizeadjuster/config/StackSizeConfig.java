@@ -9,8 +9,8 @@ public class StackSizeConfig {
     public static final int VERSION = 1;
     public int configVersion = VERSION;
 
-    public int items64Limit = 64;
-    public int items16Limit = 16;
+    public int items64Limit = 128;
+    public int items16Limit = 32;
     public int items1Limit = 1;
 
     public static synchronized void load(Path configDir) {
