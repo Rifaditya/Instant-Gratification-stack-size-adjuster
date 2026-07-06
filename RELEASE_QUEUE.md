@@ -5,6 +5,9 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.3.5+26.2`** (2026-07-06) - - Player inventory immunity and warning disclaimer. - - Specified player inventory immunity to container overflow, and added 'Change it at your own risk!' disclaimer to warnings.
+- [ ] **`1.3.4+26.2`** (2026-07-06) - - Moving lag warning & backpack safety formula. - - Added moving lag warnings and safety slot formulas for modded backpacks.
+- [ ] **`1.3.3+26.2`** (2026-07-06) - - Double Chest safe threshold. - - Adjusted warning threshold to 39,768,215 (Double Chest limit).
 - [ ] **`1.3.2+26.2`** (2026-07-06) - - Doubled default stacks. - - Doubled standard stack defaults (64 limit to 128, 16 limit to 32) while keeping 1-stack items at 1.
 - [ ] **`1.3.1+26.2`** (2026-07-06) - - Shulker Box Warning Threshold. - - Set warning limit to 79,536,431 to prevent container-wide overflow when filling a Shulker Box.
 - [ ] **`1.3.0+26.2`** (2026-07-06) - - Serialization range fix. - - Lifted serialization range checks from DataComponents (for shulker box contents) and ItemStackTemplate (for bundles) to allow saving items above 99.
