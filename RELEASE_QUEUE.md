@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.7+26.2`** (2026-07-06) - - Added overflow warnings. - - Appended tooltip warnings recommending a max limit of 1 billion to prevent integer overflows.
 - [ ] **`1.0.6+26.2`** (2026-07-06) - - Overlapping text fix. - - Dynamically scale stack count text scale down for items stacking above 99.
 - [ ] **`1.0.5+26.2`** (2026-07-06) - - Over-99 stack sizes. - - Fixed inventory slot cap at 99. Overrode Container.getMaxStackSize() and updated ItemStack count codec limits.
 - [ ] **`1.0.4+26.2`** (2026-07-06) - - Renamed settings labels. - - Updated labels to "64-Stack Limit", "16-Stack Limit", and "1-Stack Limit".

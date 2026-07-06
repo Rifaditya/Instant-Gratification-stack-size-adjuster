@@ -3,16 +3,16 @@
   "config.stacksizeadjuster.category.general": "General Settings",
   "config.stacksizeadjuster.group.categories": "Stack Size Limits by Category",
   "config.stacksizeadjuster.option.limit_64": "64-Stack Limit",
-  "config.stacksizeadjuster.option.limit_64.description": "Limit for items that normally stack to 64 (blocks, raw food, etc.). Default: 64.",
+  "config.stacksizeadjuster.option.limit_64.description": "Limit for items that normally stack to 64. Default: 64. WARNING: Limits above 1,000,000,000 (1 billion) can cause integer overflows when merging stacks, causing items to vanish.",
   "config.stacksizeadjuster.option.limit_16": "16-Stack Limit",
-  "config.stacksizeadjuster.option.limit_16.description": "Limit for items that normally stack to 16 (snowballs, ender pearls, eggs). Default: 16.",
+  "config.stacksizeadjuster.option.limit_16.description": "Limit for items that normally stack to 16. Default: 16. WARNING: Limits above 1,000,000,000 (1 billion) can cause integer overflows when merging stacks, causing items to vanish.",
   "config.stacksizeadjuster.option.limit_1": "1-Stack Limit",
-  "config.stacksizeadjuster.option.limit_1.description": "Limit for items that normally do not stack (tools, armor, potions, stews). Default: 1.",
+  "config.stacksizeadjuster.option.limit_1.description": "Limit for items that normally do not stack. Default: 1. WARNING: Limits above 1,000,000,000 (1 billion) can cause integer overflows when merging stacks, causing items to vanish.",
   "gamerule.category.stack-size-adjuster.stack-size-adjuster": "Stack Size Adjuster",
   "gamerule.stack-size-adjuster.items_64_limit": "64-Stack Limit",
-  "gamerule.stack-size-adjuster.items_64_limit.description": "Maximum stack size for items that naturally stack to 64. Default: 64",
+  "gamerule.stack-size-adjuster.items_64_limit.description": "Maximum stack size for items that naturally stack to 64. WARNING: Keep under 1 billion to prevent inventory merging overflows.",
   "gamerule.stack-size-adjuster.items_16_limit": "16-Stack Limit",
-  "gamerule.stack-size-adjuster.items_16_limit.description": "Maximum stack size for items that naturally stack to 16. Default: 16",
+  "gamerule.stack-size-adjuster.items_16_limit.description": "Maximum stack size for items that naturally stack to 16. WARNING: Keep under 1 billion to prevent inventory merging overflows.",
   "gamerule.stack-size-adjuster.items_1_limit": "1-Stack Limit",
-  "gamerule.stack-size-adjuster.items_1_limit.description": "Maximum stack size for items that naturally stack to 1. Default: 1"
+  "gamerule.stack-size-adjuster.items_1_limit.description": "Maximum stack size for items that naturally stack to 1. WARNING: Keep under 1 billion to prevent inventory merging overflows."
 }
