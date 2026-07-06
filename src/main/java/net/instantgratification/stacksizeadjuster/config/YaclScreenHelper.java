@@ -29,7 +29,12 @@ public class YaclScreenHelper {
                     // Items 64 category
                     .option(Option.<Integer>createBuilder()
                         .name(Component.translatable("config.stacksizeadjuster.option.limit_64"))
-                        .description(OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_64.description")))
+                        .description(val -> {
+                            if (val > 1000000000) {
+                                return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
+                            }
+                            return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_64.description"));
+                        })
                         .binding(
                             64,
                             () -> config.items64Limit,
@@ -45,7 +50,12 @@ public class YaclScreenHelper {
                     // Items 16 category
                     .option(Option.<Integer>createBuilder()
                         .name(Component.translatable("config.stacksizeadjuster.option.limit_16"))
-                        .description(OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_16.description")))
+                        .description(val -> {
+                            if (val > 1000000000) {
+                                return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
+                            }
+                            return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_16.description"));
+                        })
                         .binding(
                             16,
                             () -> config.items16Limit,
@@ -61,7 +71,12 @@ public class YaclScreenHelper {
                     // Items 1 category
                     .option(Option.<Integer>createBuilder()
                         .name(Component.translatable("config.stacksizeadjuster.option.limit_1"))
-                        .description(OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_1.description")))
+                        .description(val -> {
+                            if (val > 1000000000) {
+                                return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
+                            }
+                            return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_1.description"));
+                        })
                         .binding(
                             1,
                             () -> config.items1Limit,
