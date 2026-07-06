@@ -5,6 +5,7 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.3.0+26.2`** (2026-07-06) - - Serialization range fix. - - Lifted serialization range checks from DataComponents (for shulker box contents) and ItemStackTemplate (for bundles) to allow saving items above 99.
 - [ ] **`1.2.0+26.2`** (2026-07-06) - - Live client refresh. - - Force client container and inventory update when server game rules change, preventing relog requirements.
 - [ ] **`1.1.0+26.2`** (2026-07-06) - - Added overflow warnings. - - Appended dynamic tooltip warnings recommending a max limit of 1 billion to prevent integer overflows.
 - [ ] **`1.0.6+26.2`** (2026-07-06) - - Overlapping text fix. - - Dynamically scale stack count text scale down for items stacking above 99.
