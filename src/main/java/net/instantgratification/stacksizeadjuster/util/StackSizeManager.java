@@ -49,6 +49,14 @@ public class StackSizeManager {
                 StackSizeLimitSyncPayload payload = new StackSizeLimitSyncPayload(l64, l16, l1);
                 for (ServerPlayer player : server.getPlayerList().getPlayers()) {
                     ServerPlayNetworking.send(player, payload);
+                    
+                    // Force refresh client's container and inventory menus dynamically
+                    if (player.containerMenu != null) {
+                        player.containerMenu.broadcastFullState();
+                    }
+                    if (player.inventoryMenu != null && player.containerMenu != player.inventoryMenu) {
+                        player.inventoryMenu.broadcastFullState();
+                    }
                 }
             }
         }
