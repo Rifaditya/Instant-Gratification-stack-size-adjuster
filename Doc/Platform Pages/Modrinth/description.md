@@ -30,7 +30,7 @@ Configure limits for the three standard Minecraft item categories:
 
 ### 🔢 Raw Integer Values
 No more artificial caps! Adjust limits dynamically to any integer value from `1` up to `2,147,483,647`.
-- **Overflow Protection Warning**: The configuration GUI features a dynamic warning tooltip that alerts you if a limit is set above `79,536,431` (the maximum safe limit to fully fill a Shulker Box without exceeding the 32-bit integer capacity and losing items).
+- **Overflow Protection Warning**: The configuration GUI features a dynamic warning tooltip that alerts you if a limit is set above `79,536,431`. This threshold is specifically to prevent total-container overflows when filling a 27-slot container (like a Shulker Box) completely with the *same* item type. If you are using *different* item types, you can safely go up to the absolute maximum limit of `2,147,483,647` per slot since the game saves and tracks different item types independently!
 
 ### 🔓 Slot Capacity Bypass
 Say goodbye to the standard slot stack limit of 99 items. Stack Size Adjuster overrides the default container and stack serializer limits, allowing you to hold massive stacks (e.g., `640` or `1000`) in any chest, hopper, or inventory slot.
