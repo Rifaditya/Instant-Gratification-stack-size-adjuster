@@ -26,6 +26,9 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
       * **Player Inventory (36 slots)**: `59,652,323` max per slot
       * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
     - *Note on Different Items*: If you are storing *different* item types in the same container, you can safely use the absolute maximum limit of `2,147,483,647` per slot since the game tracks and serializes slots independently!
+    - *Flat vs. Nested Storage Safety*:
+      * **Flat Inventories (Player Inventory, Chests, Barrels)**: These are saved flatly in player `.dat` files or chunk block-entities. Because individual slot counts are never summed up during saving, you can safely set and fill all slots up to the absolute maximum limit of `2,147,483,647` with identical items without any overflow/deletion issues!
+      * **Nested Inventories (Shulker Boxes, Bundles)**: These are nested items stored inside a single slot's NBT data component. When tooltip renderers, inventory sorters, or game functions sum up the contents inside a Shulker Box, they will trigger a 32-bit signed integer overflow if the total count exceeds 2.14 billion, leading to inventory deletion. Keep these under the safe per-slot limits!
 - **Slot Capacity Bypass**: Bypasses Minecraft's default slot-level count limits, allowing inventory slots to hold over 99 items cleanly.
 - **Dynamic Count Text Scaling**: Inventory count numbers automatically scale down when they exceed 99 to fit inside slot boundaries without overlapping adjacent slots.
 - **Modded Item Compatibility**: Automatically recognizes and scales stack sizes for modded items based on their default base limits.

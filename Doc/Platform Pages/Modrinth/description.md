@@ -43,6 +43,9 @@ No more artificial caps! Adjust limits dynamically to any integer value from `1`
     * **Player Inventory (36 slots)**: `59,652,323` max per slot
     * **Double Chest / Large Chest (54 slots)**: `39,768,215` max per slot
   - *Note on Different Items*: If you are storing *different* item types in the same container, you can safely go up to the absolute limit of `2,147,483,647` per slot since the game saves and tracks different item types independently!
+  - *Flat vs. Nested Storage Safety*:
+    * **Flat Inventories (Player Inventory, Chests, Barrels)**: These are saved flatly in player `.dat` files or chunk block-entities. Because individual slot counts are never summed up during saving, you can safely set and fill all slots up to the absolute maximum limit of `2,147,483,647` with identical items without any overflow/deletion issues!
+    * **Nested Inventories (Shulker Boxes, Bundles)**: These are nested items stored inside a single slot's NBT data component. When tooltip renderers, inventory sorters, or game functions sum up the contents inside a Shulker Box, they will trigger a 32-bit signed integer overflow if the total count exceeds 2.14 billion, leading to inventory deletion. Keep these under the safe per-slot limits!
 
 ### 🔓 Slot Capacity Bypass
 Say goodbye to the standard slot stack limit of 99 items. Stack Size Adjuster overrides the default container and stack serializer limits, allowing you to hold massive stacks (e.g., `640` or `1000`) in any chest, hopper, or inventory slot.
