@@ -78,9 +78,7 @@ If you enjoy the **Instant Gratification** collection, consider supporting devel
 ## 📦 Modpack Permissions
 
 <blockquote><strong>Modpack Distribution Policy:</strong><br>
-Since this mod is open-source (GPLv3), you are free to include it in any modpack! If you want to support my work, downloading it directly through the official platform page (CurseForge) is highly appreciated.
-<br><br>
-<strong>Cross-platform redistribution is not permitted.</strong> If you download this mod from CurseForge, your modpack must also be published on CurseForge.</blockquote>
+Since this mod is open-source (GPLv3), you are free to include it in any modpack! If you want to support my work, downloading it directly through the official platform page (CurseForge) is highly appreciated.</blockquote>
 
 ---
 

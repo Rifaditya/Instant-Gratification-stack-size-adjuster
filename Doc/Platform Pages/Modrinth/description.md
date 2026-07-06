@@ -81,8 +81,6 @@ If you enjoy the **Instant Gratification** collection, consider supporting devel
 > [!NOTE]
 > **Modpack Distribution Policy**:
 > Since this mod is open-source (GPLv3), you are free to include it in any modpack! If you want to support my work, downloading it directly through the official platform page (Modrinth) is highly appreciated.
->
-> **Cross-platform redistribution is not permitted.** If you download this mod from Modrinth, your modpack must also be published on Modrinth.
 
 ---
 
