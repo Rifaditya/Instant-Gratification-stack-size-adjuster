@@ -17,7 +17,7 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
     * *⚠️ Performance Note*: Moving or sorting extremely large item stacks (millions or billions) can cause transient game lag or frame stutter due to CPU calculation load.
     * *🎒 Modded Container / Backpack Safety Formula*: If you are using custom containers or modded backpacks, you can calculate the maximum safe stack size to fully fill the container without overflow using this formula:
       
-      $$\text{Safe Stack Limit} = \frac{2,147,483,647}{\text{Total Slots in Container}}$$
+      `Safe Stack Limit = 2,147,483,647 / [Total Slots in Container]`
       
       * **100-slot container**: `21,474,836` max per slot
       * **200-slot container**: `10,737,418` max per slot
@@ -30,6 +30,7 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
     - *Flat vs. Nested Storage Safety*:
       * **Player Inventory (Fully Immune)**: The player inventory is saved flatly as direct separate tags inside the player `.dat` files. Because individual slot counts are never summed up during saving, you can safely set and fill all 36 slots of your player inventory up to the absolute maximum limit of `2,147,483,647` with identical items without any overflow or deletion issues!
       * **Chests, Barrels, and Shulker Boxes (Vulnerable to Overflow)**: World containers (like Chests, Double Chests, and Barrels) and nested container items (like Shulker Boxes and Bundles) are vulnerable. Tooltip renderers, inventory sorters, or game functions sum up their total contents. If the total count of identical items inside exceeds 2.14 billion, it triggers a signed 32-bit integer overflow and deletes your items. Make sure slots in these containers stay under the safe per-slot limits!
+      * **Storage Networks & Mod Compatibility**: Works with storage network mods (like Tom's Simple Storage, etc.) at normal and moderately high values. Extreme limits (100M+) inside very large networks may cause items to be lost or trigger extraction loops due to third-party integer limitations (truncations in external mod logic). Change it at your own risk!
 - **Slot Capacity Bypass**: Bypasses Minecraft's default slot-level count limits, allowing inventory slots to hold over 99 items cleanly.
 - **Dynamic Count Text Scaling**: Inventory count numbers automatically scale down when they exceed 99 to fit inside slot boundaries without overlapping adjacent slots.
 - **Modded Item Compatibility**: Automatically recognizes and scales stack sizes for modded items based on their default base limits.
