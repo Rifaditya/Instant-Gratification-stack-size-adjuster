@@ -5,7 +5,8 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
-- [ ] **`1.3.5+26.2`** (2026-07-06) - - Player inventory immunity, disclaimer, and crash fix. - - Specified player inventory immunity, added warning disclaimer, and fixed chest destruction crash by limiting item entities on drop.
+- [ ] **`1.3.6+26.2`** (2026-07-07) - - Chest break crash fix. - - Fixed chest destruction crash by dynamically scaling item entity split sizes to cap maximum spawned item entities per slot.
+- [ ] **`1.3.5+26.2`** (2026-07-06) - - Player inventory immunity and warning disclaimer. - - Specified player inventory immunity, and added 'Change it at your own risk!' warning disclaimer to all tooltips and docs.
 - [ ] **`1.3.4+26.2`** (2026-07-06) - - Moving lag warning & backpack safety formula. - - Added moving lag warnings and safety slot formulas for modded backpacks.
 - [ ] **`1.3.3+26.2`** (2026-07-06) - - Double Chest safe threshold. - - Adjusted warning threshold to 39,768,215 (Double Chest limit).
 - [ ] **`1.3.2+26.2`** (2026-07-06) - - Doubled default stacks. - - Doubled standard stack defaults (64 limit to 128, 16 limit to 32) while keeping 1-stack items at 1.
