@@ -9,7 +9,8 @@
         "ItemStackMixin",
         "ContainerMixin",
         "DataComponentsMixin",
-        "ItemStackTemplateMixin"
+        "ItemStackTemplateMixin",
+        "ContainersMixin"
     ],
     "injectors": {
         "defaultRequire": 1
