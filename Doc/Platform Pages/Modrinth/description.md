@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
     <a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&logo=fabric" alt="Requires Fabric API"></a>
     <img src="https://img.shields.io/badge/Language-Java_25-orange?style=for-the-badge&logo=java" alt="Java 25">
     <img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License">
@@ -62,6 +62,11 @@ Configure limits instantly on-the-fly using namespaced GameRules. Client configu
 
 ## ⚙️ Configuration (Native Game Rules)
 
+
+> [!IMPORTANT]
+> **Config vs. In-Game GameRules:**
+> The global configuration file only defines **default values for new worlds** at creation time.
+> If you have **already created/opened a world**, changing the config file will have no effect. You must change the settings in-game using the **Edit Game Rules** UI screen or the /gamerule command.
 Configure options in-game using `/gamerule` or via the integrated YACL config GUI:
 - `stack-size-adjuster:items_64_limit`
 - `stack-size-adjuster:items_16_limit`
