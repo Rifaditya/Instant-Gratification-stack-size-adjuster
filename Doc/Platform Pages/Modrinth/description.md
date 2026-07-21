@@ -99,11 +99,11 @@ If you enjoy the **Instant Gratification** collection, consider supporting devel
 
 ---
 
-## 📦 Modpack Permissions
+> [!IMPORTANT]
+> **📦 Modpack Permissions & Distribution:** You are free to include this mod in any modpack on any platform. However, the mod itself must be downloaded from its official distribution pages on **Modrinth** or **CurseForge**. Re-uploading or redistributing the mod jar file to third-party sites is strictly prohibited unless explicitly permitted by the creator.
+> 
+> **License & Forks:** Since the source code is licensed under **GNU GPLv3**, you are fully permitted to fork the repository, make modifications, build your own versions, and distribute them under the terms of the GPLv3. The prohibition on third-party redistribution applies exclusively to the official compiled releases/jars published by the original creator (Dasik/Rifaditya). Forks must be published as distinct projects, not direct re-uploads of official builds.
 
-> [!NOTE]
-> **Modpack Distribution Policy**:
-> Since this mod is open-source (GPLv3), you are free to include it in any modpack! If you want to support my work, downloading it directly through the official platform page (Modrinth) is highly appreciated.
 
 ---
 

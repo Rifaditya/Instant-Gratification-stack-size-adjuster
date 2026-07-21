@@ -1,5 +1,86 @@
 # Changelog
 
+## [1.4.14+26.2] - 2026-07-14
+
+### Fixed
+- **Give Command Integer Overflow**: Fixed integer overflow bug when giving items with very high stack size limits. The `/give` command's maximumallowed count calculation (`maxStackSize * 100`) is now processed using `long` values and capped to `Integer.MAX_VALUE` to prevent negative limit results (like `-80`) that blocked players from using `/give` on command blocks and other stack-adjusted items.
+
+## [1.4.12+26.2] - 2026-07-11
+
+### Fixed
+- Fixed launch crash caused by `InvalidInjectionException` on `ItemStackMixin`. Reverted the `@Inject` on `getMaxStackSize()` back to a direct public method override, resolving the target method lookup failure on Minecraft 26.2.
+
+## [1.4.11+26.2] - 2026-07-11
+
+### Removed
+- Removed live GameRule sync on config save. Changing config values now only defines default settings for new worlds, allowing each world to maintain independent GameRule settings.
+
+## [1.4.10+26.2] - 2026-07-11
+
+### Added
+- Added programmatic Addon Override API in `StackSizeManager`. Addon mods (like Potion Stacker) can now register dynamic override functions to adjust stack sizes programmatically.
+- Refactored mixins from `@Overwrite` to non-conflicting `@Inject(at = @At("RETURN"), cancellable = true)` to support addon mod coexistence and prevent startup collisions.
+
+## [1.4.9+26.2] - 2026-07-11
+
+### Fixed
+- Fixed global configuration not updating active GameRules on newly created worlds. The mod now reloads the global config baseline during the `SERVER_STARTED` event and copies template values directly to GameRules if the world is not initialized yet (`!isInitialized()`).
+- Added prominent notice to config tooltips clarifying that global JSON configurations only define the default values for newly generated worlds, and existing worlds must be modified in-game.
+
+## [1.4.8+26.2] - 2026-07-11
+
+### Removed
+- Removed the dedicated "Potion Limit" setting and GameRule. Reverted potion-stacking configuration from this mod entirely.
+- All potion-stacking capabilities have been deferred to the future standalone addon mod (Potion Stacker).
+
+## [1.4.7+26.2] - 2026-07-08 [DEPRECATED / SUPERSEDED]
+
+### Added
+- Added dedicated **"Potion Limit"** configuration setting and GameRule (default: 16). Superseded by `1.4.8+26.2` due to migration to dedicated addon mod.
+
+## [1.4.6+26.2] - 2026-07-08 [DEPRECATED / SUPERSEDED]
+
+### Fixed
+- **Design Flaw**: Grouped potions and other 1-stack items (like beds/swords) under the same setting, causing beds and swords to stack. Superseded by `1.4.7+26.2`.
+
+- Fixed dynamic stack size adjustments for 16-stack items (like eggs, ender pearls, snowballs) and 1-stack items (like potions). Replaced strict equality limit checks in `StackSizeManager.getModifiedStackSize()` with clean category mapping to allow YACL's default `items16Limit = 32` and any custom limit values to take effect correctly.
+
+## [1.4.5+26.2] - 2026-07-08
+
+### Fixed
+
+- Fixed item duplication and leftovers glitch when drag-splitting and consolidating massive stack sizes (up to 2.14 billion). Overrode `AbstractContainerMenu.getQuickCraftPlaceCount()` to compute slot distributions using double precision math to prevent float rounding errors.
+
+## [1.4.4+26.2] - 2026-07-08
+
+### Fixed
+
+- Fixed double-click stack consolidation duplication glitch. Explicitly defined `getMaxStackSize()` directly on `ItemStack` to ensure dynamic stack limits are consistently queried across all container actions and to prevent method resolution bypasses caused by other mods.
+
+## [1.4.3+26.2] - 2026-07-07
+
+### Added
+
+- Added configurable **Max Drop Entities** GameRule and YACL config option. Controls how many item entities spawn per inventory slot when a container breaks (range 1–64, default 8). Vanilla has no cap and can spawn thousands of entities for large stacks.
+
+## [1.4.2+26.2] - 2026-07-07
+
+### Fixed
+
+- Fixed a dependency registration typo in `fabric.mod.json` where the required mod ID was specified as `item-clumps` (hyphenated) instead of the actual ID `item_clumps` (underscored), which caused startup load failures.
+
+## [1.4.1+26.2] - 2026-07-07 (skip)
+
+### Changed
+
+- Bumped required **Item Clumps** version to `>=1.0.18+26.2` to support dynamic ground merge limit alignment and the removal of the redundant config/GameRule settings.
+
+## [1.4.0+26.2] - 2026-07-07
+
+### Added
+
+- Added **Item Clumps** mod as a required dependency to handle dynamic ground item entity compression, preventing severe server and client lag when players die or containers are broken with massive stack sizes.
+
 ## [1.3.6+26.2] - 2026-07-07
 
 ### Fixed

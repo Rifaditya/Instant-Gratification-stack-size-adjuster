@@ -5,6 +5,20 @@ Open this file in your editor and change `[ ]` to `[x]` when you publish a versi
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.4.14+26.2`** (2026-07-14) - - Fix Give Command Integer Overflow. - - Fixed integer overflow in /give command's max allowed count by using long calculations and safe clamping to Integer.MAX_VALUE.
+- [ ] **`1.4.12+26.2`** (2026-07-11) - - Fix Launch Crash. - - Fixed launch crash due to InvalidInjectionException on ItemStackMixin by reverting getMaxStackSize inject to direct method override.
+- [ ] **`1.4.11+26.2`** (2026-07-11) - - Remove Live Config Sync. - - Removed live GameRule syncing from YACL config save block so config changes only define default values for newly created worlds.
+- [ ] **`1.4.10+26.2`** (2026-07-11) - - Addon Override API & Mixin Safety. - - Added dynamic BiFunction override API to StackSizeManager and refactored mixins to @Inject to support conflict-free addon installation.
+- [ ] **`1.4.9+26.2`** (2026-07-11) - - Sync Config to New World GameRules. - - Synchronize global YACL config settings to world GameRules on startup for newly created worlds. Added config tooltips warning about per-world isolation.
+- [ ] **`1.4.8+26.2`** (2026-07-11) - - Revert Potion Configuration. - - Completely reverted potion stacking settings, GameRules, mixins, and syncing logic, deferring them to the future addon mod.
+- [ ] **`1.4.7+26.2`** (2026-07-08) - - [DEPRECATED / SUPERSEDED] Dedicated Potion Limit. - - Added dedicated Potion Limit. Superseded by 1.4.8+26.2.
+- [ ] **`1.4.6+26.2`** (2026-07-08) - - [DEPRECATED / SUPERSEDED] Fix Dynamic Limits. - - Fixed category limit mapping in StackSizeManager. Superseded by 1.4.7+26.2.
+- [ ] **`1.4.5+26.2`** (2026-07-08) - - Fix Drag-Splitting Float Precision Loss. - - Override getQuickCraftPlaceCount() using double precision division in AbstractContainerMenu to fix item duplication/leftovers when drag-splitting and consolidating massive stack sizes near 2.14B.
+- [ ] **`1.4.4+26.2`** (2026-07-08) - - Fix Double-Click Consolidation Duplication. - - Override getMaxStackSize() directly in ItemStack to resolve slot desync duplication when gathering/sorting spread stacks.
+- [ ] **`1.4.3+26.2`** (2026-07-07) - - Configurable Max Drop Entities. - - Added Max Drop Entities GameRule and YACL config slider (1–64, default 8) to control how many item entities spawn per slot when a container breaks.
+- [ ] **`1.4.2+26.2`** (2026-07-07) - - Fixed dependency ID typo. - - Fixed dependency ID typo in fabric.mod.json from item-clumps to item_clumps.
+- [ ] **`1.4.1+26.2`** (2026-07-07) - - Dynamic Ground Merge Sync. - - Bumped required Item Clumps dependency version to 1.0.18+26.2 to support dynamic ground merge limit alignment and the removal of the redundant config/GameRule settings.
+- [ ] **`1.4.0+26.2`** (2026-07-07) - - Required dependency on Item Clumps. - - Made Item Clumps a required dependency to handle dynamic ground item entity compression, resolving lag and crashes on player death or chest destruction.
 - [ ] **`1.3.6+26.2`** (2026-07-07) - - Chest break crash fix. - - Fixed chest destruction crash by dynamically scaling item entity split sizes to cap maximum spawned item entities per slot.
 - [ ] **`1.3.5+26.2`** (2026-07-06) - - Player inventory immunity and warning disclaimer. - - Specified player inventory immunity, and added 'Change it at your own risk!' warning disclaimer to all tooltips and docs.
 - [ ] **`1.3.4+26.2`** (2026-07-06) - - Moving lag warning & backpack safety formula. - - Added moving lag warnings and safety slot formulas for modded backpacks.
