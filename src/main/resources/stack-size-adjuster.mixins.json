@@ -10,7 +10,9 @@
         "ContainerMixin",
         "DataComponentsMixin",
         "ItemStackTemplateMixin",
-        "ContainersMixin"
+        "ContainersMixin",
+        "AbstractContainerMenuMixin",
+        "GiveCommandMixin"
     ],
     "injectors": {
         "defaultRequire": 1

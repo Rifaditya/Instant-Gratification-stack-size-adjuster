@@ -33,6 +33,11 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
       * **Storage Networks & Mod Compatibility**: Works with storage network mods (like Tom's Simple Storage, etc.) at normal and moderately high values. Extreme limits (100M+) inside very large networks may cause items to be lost or trigger extraction loops due to third-party integer limitations (truncations in external mod logic). Change it at your own risk!
 - **Slot Capacity Bypass**: Bypasses Minecraft's default slot-level count limits, allowing inventory slots to hold over 99 items cleanly.
 - **Dynamic Count Text Scaling**: Inventory count numbers automatically scale down when they exceed 99 to fit inside slot boundaries without overlapping adjacent slots.
+- **Container Destruction Protection & Item Clumps**: Includes the **Max Drop Entities** GameRule (`stack-size-adjuster:max_drop_entities`, default: `8`, range: `1-64`) and integrates with **Item Clumps** to cap spawned item entities when containers break or players die, preventing severe server and client lag spikes.
+- **Drag-Splitting & Consolidation Precision**: Overrides container drag-splitting with double-precision math during QUICK_CRAFT and `ItemStack` consolidation to prevent item duplication or desync glitches when organizing massive stacks.
+- **Give Command Integer Overflow Safeguard**: Re-routes `/give` command calculations with `long` math and safe clamping to `Integer.MAX_VALUE` so players can safely `/give` items even with extreme stack limits active.
+- **Programmatic Addon Override API**: Exposes `StackSizeManager.registerOverride(...)` allowing third-party addon mods (like Potion Stacker Addon) to dynamically inject custom stack rules without mixin conflicts.
+- **Forward Compatibility & Version Guard**: Pre-configured with `"minecraft": ">=26.2-"` open-ended bounds and zero-dependency `ModVersionGuard` startup protection to prevent world save corruption on unsupported game drops.
 - **Modded Item Compatibility**: Automatically recognizes and scales stack sizes for modded items based on their default base limits.
 - **Optional YACL / ModMenu Integration**: If YetAnotherConfigLib (YACL) and ModMenu are installed, provides an in-game config GUI. Otherwise, works out of the box using server-compatible GameRules.
 
@@ -41,17 +46,21 @@ Part of the **Instant Gratification Collection** — mods that respect the playe
 ## 📋 Configuration
 
 Change stack size limits using `/gamerule` in-game or via the config GUI:
-- `stack-size-adjuster:items_64_limit` (Default: `64`)
-- `stack-size-adjuster:items_16_limit` (Default: `16`)
+- `stack-size-adjuster:items_64_limit` (Default: `128`)
+- `stack-size-adjuster:items_16_limit` (Default: `32`)
 - `stack-size-adjuster:items_1_limit` (Default: `1`)
+- `stack-size-adjuster:max_drop_entities` (Default: `8`)
+
+> **Note on Configuration vs. GameRules**: The global configuration file only defines default settings for newly created worlds. Existing worlds must be modified in-game via `/gamerule` or the Edit Game Rules screen.
 
 ---
 
 ## 📦 Installation
 
 1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
-2. Download the mod jar and place it in your `mods` folder.
-3. Launch the game.
+2. Install **[Item Clumps](https://modrinth.com/mod/item_clumps)** (Required dependency for item entity compression).
+3. Download the mod jar and place it in your `mods` folder.
+4. Launch the game.
 
 ---
 

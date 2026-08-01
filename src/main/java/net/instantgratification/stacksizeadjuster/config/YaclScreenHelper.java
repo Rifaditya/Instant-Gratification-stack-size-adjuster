@@ -4,12 +4,9 @@ package net.instantgratification.stacksizeadjuster.config;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
-import net.minecraft.client.Minecraft;
+import dev.isxander.yacl3.gui.controllers.slider.IntegerSliderController;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.world.level.gamerules.GameRules;
-import net.instantgratification.stacksizeadjuster.StackSizeAdjusterFabric;
 
 public class YaclScreenHelper {
     public static ConfigScreenFactory<?> createScreen() {
@@ -91,21 +88,27 @@ public class YaclScreenHelper {
 
                     .build()
                 )
+                .group(OptionGroup.createBuilder()
+                    .name(Component.translatable("config.stacksizeadjuster.group.container_drops"))
+ 
+                    // Max Drop Entities
+                    .option(Option.<Integer>createBuilder()
+                        .name(Component.translatable("config.stacksizeadjuster.option.max_drop_entities"))
+                        .description(OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.max_drop_entities.description")))
+                        .binding(
+                            8,
+                            () -> config.maxDropEntities,
+                            val -> config.maxDropEntities = val
+                        )
+                        .customController(opt -> new IntegerSliderController(opt, 1, 64, 1))
+                        .build()
+                    )
+ 
+                    .build()
+                )
                 .build()
             )
-            .save(() -> {
-                StackSizeConfig.save();
-                
-                // If in-game, update the integrated server's gamerules
-                Minecraft client = Minecraft.getInstance();
-                if (client != null && client.getSingleplayerServer() != null) {
-                    MinecraftServer server = client.getSingleplayerServer();
-                    GameRules rules = server.getGameRules();
-                    rules.set(StackSizeAdjusterFabric.ITEMS_64_LIMIT, config.items64Limit, server);
-                    rules.set(StackSizeAdjusterFabric.ITEMS_16_LIMIT, config.items16Limit, server);
-                    rules.set(StackSizeAdjusterFabric.ITEMS_1_LIMIT, config.items1Limit, server);
-                }
-            })
+            .save(StackSizeConfig::save)
             .build()
             .generateScreen(parent);
     }

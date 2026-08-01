@@ -37,7 +37,8 @@
         "minecraft": "${minecraft_dependency}",
         "java": ">=25",
         "fabric-api": "*",
-        "dasik-library": "*"
+        "dasik-library": "*",
+        "item_clumps": ">=1.0.18+26.2"
     },
     "suggests": {
         "cloth-config": "*",

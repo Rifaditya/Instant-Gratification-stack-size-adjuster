@@ -12,6 +12,7 @@ public class StackSizeConfig {
     public int items64Limit = 128;
     public int items16Limit = 32;
     public int items1Limit = 1;
+    public int maxDropEntities = 8;
 
     public static synchronized void load(Path configDir) {
         CONFIG_PATH = configDir.resolve("stack-size-adjuster.json");

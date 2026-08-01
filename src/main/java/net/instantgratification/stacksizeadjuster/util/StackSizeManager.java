@@ -5,10 +5,21 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.instantgratification.stacksizeadjuster.network.StackSizeLimitSyncPayload;
 
+import net.minecraft.world.item.Item;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.BiFunction;
+
 public class StackSizeManager {
     private static volatile int limit64 = 64;
     private static volatile int limit16 = 16;
     private static volatile int limit1 = 1;
+
+    private static final List<BiFunction<Item, Integer, Integer>> OVERRIDES = new CopyOnWriteArrayList<>();
+
+    public static void registerOverride(BiFunction<Item, Integer, Integer> override) {
+        OVERRIDES.add(override);
+    }
 
     public static int getLimit64() {
         return limit64;
@@ -22,21 +33,28 @@ public class StackSizeManager {
         return limit1;
     }
 
-    public static int getModifiedStackSize(int original) {
+    public static int getModifiedStackSize(Item item, int original) {
         if (original <= 0) {
             return original;
         }
+
+        // Apply registered overrides from addons (e.g. Potion Stacker)
+        int size = original;
+        for (BiFunction<Item, Integer, Integer> override : OVERRIDES) {
+            size = override.apply(item, size);
+        }
+        if (size != original) {
+            return size;
+        }
+
         if (original >= 64) {
             return limit64;
         } else if (original >= 16) {
-            if (limit16 == 64) return 64;
-            if (limit16 == 16) return original;
-            return 1;
-        } else {
-            if (limit1 == 64) return 64;
-            if (limit1 == 16) return 16;
-            return original;
+            return limit16;
+        } else if (original == 1) {
+            return limit1;
         }
+        return original;
     }
 
     public static void setLimits(int l64, int l16, int l1, MinecraftServer server) {

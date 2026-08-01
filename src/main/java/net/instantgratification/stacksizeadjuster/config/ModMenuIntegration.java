@@ -8,7 +8,7 @@ import net.dasik.social.api.config.GuiHelper;
 public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
-        return GuiHelper.getOptionalFactory(
+        return GuiHelper.getOptionalYaclFactory(
             "stack-size-adjuster",
             "net.instantgratification.stacksizeadjuster.config.YaclScreenHelper",
             "createScreen"

@@ -1,4 +1,4 @@
-﻿<p align="center">
+<p align="center">
     <a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&logo=fabric" alt="Requires Fabric API"></a>
     <img src="https://img.shields.io/badge/Language-Java_25-orange?style=for-the-badge&logo=java" alt="Java 25">
     <img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License">
@@ -7,10 +7,10 @@
 
 # 📦 Stack Size Adjuster
 
-### 🎮 Version Compatibility & Parity
+### 🎮 Version Compatibility
 
-This mod is active and fully supported:
-* **Minecraft 26.2+**: Current public release — **`v1.0.1`**
+This mod is actively maintained and updated:
+* **Minecraft 26.2+**: Fully supported with open-ended forward compatibility.
 
 > **Take Control of Your Inventory. Custom Limits, No Boundaries.**
 
@@ -55,30 +55,44 @@ Say goodbye to the standard slot stack limit of 99 items. Stack Size Adjuster ov
 ### 📐 Dynamic Font Scale-Down
 Worried about large numbers overlapping slots? When stack counts exceed 99, the client-side renderer dynamically scales down the count numbers to fit perfectly within slot boundaries, ensuring text never overlaps.
 
-### 📡 Dynamic GameRules (No Restarts Required)
-Configure limits instantly on-the-fly using namespaced GameRules. Client configurations automatically sync with the server during logins or runtime changes.
+### 🛡️ Container Destruction Protection & Item Clumps
+Includes the **Max Drop Entities** GameRule (`stack-size-adjuster:max_drop_entities`, default: `8`) and integrates with **Item Clumps** to cap spawned item entities when containers break or players die, preventing severe server and client lag spikes.
+
+### 🎯 Drag-Splitting & Consolidation Precision
+Overrides container drag-splitting with double-precision math during QUICK_CRAFT and `ItemStack` consolidation to prevent item duplication or desync glitches when organizing massive stacks.
+
+### 🛠️ Give Command Integer Overflow Safeguard
+Re-routes `/give` command calculations with `long` math and safe clamping to `Integer.MAX_VALUE` so players can safely `/give` items even with extreme stack limits active.
+
+### 🔌 Programmatic Addon Override API
+Exposes `StackSizeManager.registerOverride(...)` allowing third-party addon mods (like Potion Stacker Addon) to dynamically inject custom stack rules without mixin conflicts.
+
+### 🔒 Forward Compatibility & Version Guard
+Pre-configured with `"minecraft": ">=26.2-"` open-ended bounds and zero-dependency `ModVersionGuard` startup protection to prevent world save corruption on unsupported game drops.
 
 ---
 
 ## ⚙️ Configuration (Native Game Rules)
 
-
 > [!IMPORTANT]
 > **Config vs. In-Game GameRules:**
 > The global configuration file only defines **default values for new worlds** at creation time.
-> If you have **already created/opened a world**, changing the config file will have no effect. You must change the settings in-game using the **Edit Game Rules** UI screen or the /gamerule command.
+> If you have **already created/opened a world**, changing the config file will have no effect. You must change the settings in-game using the **Edit Game Rules** UI screen or the `/gamerule` command.
+
 Configure options in-game using `/gamerule` or via the integrated YACL config GUI:
-- `stack-size-adjuster:items_64_limit`
-- `stack-size-adjuster:items_16_limit`
-- `stack-size-adjuster:items_1_limit`
+- `stack-size-adjuster:items_64_limit` (Default: `128`)
+- `stack-size-adjuster:items_16_limit` (Default: `32`)
+- `stack-size-adjuster:items_1_limit` (Default: `1`)
+- `stack-size-adjuster:max_drop_entities` (Default: `8`)
 
 ---
 
 ## 📦 Installation
 
-1. Install **Fabric API**.
-2. Download the mod jar and place it in your `mods` folder.
-3. Launch the game.
+1. Install **[Fabric API](https://modrinth.com/mod/fabric-api)**.
+2. Install **[Item Clumps](https://modrinth.com/mod/item_clumps)** (Required dependency for item entity compression).
+3. Download the mod jar and place it in your `mods` folder.
+4. Launch the game.
 
 ---
 
@@ -103,7 +117,6 @@ If you enjoy the **Instant Gratification** collection, consider supporting devel
 > **📦 Modpack Permissions & Distribution:** You are free to include this mod in any modpack on any platform. However, the mod itself must be downloaded from its official distribution pages on **Modrinth** or **CurseForge**. Re-uploading or redistributing the mod jar file to third-party sites is strictly prohibited unless explicitly permitted by the creator.
 > 
 > **License & Forks:** Since the source code is licensed under **GNU GPLv3**, you are fully permitted to fork the repository, make modifications, build your own versions, and distribute them under the terms of the GPLv3. The prohibition on third-party redistribution applies exclusively to the official compiled releases/jars published by the original creator (Dasik/Rifaditya). Forks must be published as distinct projects, not direct re-uploads of official builds.
-
 
 ---
 
