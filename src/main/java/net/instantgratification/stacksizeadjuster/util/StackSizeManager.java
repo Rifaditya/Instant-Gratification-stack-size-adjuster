@@ -15,7 +15,12 @@ public class StackSizeManager {
     private static volatile int limit16 = 16;
     private static volatile int limit1 = 1;
 
+    private static final List<CustomStackSizeOverride> CUSTOM_OVERRIDES = new CopyOnWriteArrayList<>();
     private static final List<BiFunction<Item, Integer, Integer>> OVERRIDES = new CopyOnWriteArrayList<>();
+
+    public static void registerOverride(CustomStackSizeOverride override) {
+        CUSTOM_OVERRIDES.add(override);
+    }
 
     public static void registerOverride(BiFunction<Item, Integer, Integer> override) {
         OVERRIDES.add(override);
@@ -38,7 +43,15 @@ public class StackSizeManager {
             return original;
         }
 
-        // Apply registered overrides from addons (e.g. Potion Stacker)
+        // 1. Check custom overrides from addons (e.g. Stew Stacker, Potion Stacker)
+        for (CustomStackSizeOverride override : CUSTOM_OVERRIDES) {
+            int customSize = override.getCustomStackSize(item, original);
+            if (customSize >= 0) {
+                return customSize;
+            }
+        }
+
+        // 2. Legacy fallback for BiFunction overrides
         int size = original;
         for (BiFunction<Item, Integer, Integer> override : OVERRIDES) {
             size = override.apply(item, size);

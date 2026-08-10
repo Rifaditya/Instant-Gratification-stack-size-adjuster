@@ -1,3 +1,10 @@
+# Changelog
+
+## [1.4.17+26.2] - 2026-08-10
+
+### Fixed
+- **Addon Override Resolution**: Added `@FunctionalInterface CustomStackSizeOverride` in `StackSizeManager`. Returning a non-negative stack size (`>= 0`) explicitly sets the item's stack size (e.g. for `Stew Stacker Addon` or `Potion Stacker Addon`), bypassing general category fallbacks (`limit1`, `limit16`, `limit64`) even when the custom stack limit matches vanilla original stack size.
+
 ## [1.4.16+26.2] - 2026-07-22
 
 ### ⚠️ Version Guard Notice
