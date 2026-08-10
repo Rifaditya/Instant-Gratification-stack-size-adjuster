@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.4.18+26.2] - 2026-08-10
+
+### Fixed
+- **OutOfMemory & Negative Stack Size Infinite Loop Fix**: Updated `StackSizeManager.getModifiedStackSize` to ignore negative returns from legacy `BiFunction` overrides and added a fail-safe guard ensuring `getModifiedStackSize` NEVER returns `<= 0`. Resolves an infinite loop in `LootTable.createStackSplitter` during mob drops and chicken egg-laying (`Chicken.aiStep`) when addons returned `-1` for unhandled items.
+
 ## [1.4.17+26.2] - 2026-08-10
 
 ### Fixed

@@ -51,23 +51,28 @@ public class StackSizeManager {
             }
         }
 
-        // 2. Legacy fallback for BiFunction overrides
-        int size = original;
+        // 2. Legacy fallback for BiFunction overrides (only accept positive values != original)
         for (BiFunction<Item, Integer, Integer> override : OVERRIDES) {
-            size = override.apply(item, size);
-        }
-        if (size != original) {
-            return size;
+            int legacySize = override.apply(item, original);
+            if (legacySize >= 0 && legacySize != original) {
+                return legacySize;
+            }
         }
 
+        int result = original;
         if (original >= 64) {
-            return limit64;
+            result = limit64;
         } else if (original >= 16) {
-            return limit16;
+            result = limit16;
         } else if (original == 1) {
-            return limit1;
+            result = limit1;
         }
-        return original;
+
+        // Fail-safe guard: Ensure return value is NEVER <= 0 to prevent infinite loops in LootTable.createStackSplitter
+        if (result <= 0) {
+            return original > 0 ? original : 1;
+        }
+        return result;
     }
 
     public static void setLimits(int l64, int l16, int l1, MinecraftServer server) {
