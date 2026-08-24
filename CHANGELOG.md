@@ -1,10 +1,5 @@
 # Changelog
 
-## [1.4.19+26.2] - 2026-08-10
-
-### Fixed
-- **Release Version Sync**: Fresh release build for Modrinth distribution resolving duplicate upload validation errors.
-
 ## [1.4.18+26.2] - 2026-08-10
 
 ### Fixed
