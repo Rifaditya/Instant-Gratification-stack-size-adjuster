@@ -1,0 +1,79 @@
+# Configuration ModMenu et YACL
+
+## Vue d'ensemble
+
+Stack Size Adjuster propose une interface graphique optionnelle via **ModMenu** et **YetAnotherConfigLib (YACL v3)**, isolée par réflexion (`GuiHelper.getOptionalYaclFactory`) afin d'éviter tout plantage sur les serveurs dédiés dépourvus de YACL.
+
+---
+
+## ⚙️ Spécification du fichier de configuration
+
+* **Chemin** : `config/stack-size-adjuster.json`
+* **Format** : JSON avec suivi de version.
+
+### Schéma JSON et valeurs par défaut :
+```json
+{
+  "configVersion": 1,
+  "items64Limit": 128,
+  "items16Limit": 32,
+  "items1Limit": 1,
+  "maxDropEntities": 8
+}
+```
+
+---
+
+## 🖥️ Architecture de l'écran YACL 3.9.5
+
+L'écran de réglages côté client est construit de manière réflexive dans `YaclScreenHelper` :
+
+```java
+public class YaclScreenHelper {
+    public static ConfigScreenFactory<?> createScreen() {
+        return YaclScreenHelper::buildScreen;
+    }
+
+    private static Screen buildScreen(Screen parent) {
+        StackSizeConfig config = StackSizeConfig.get();
+
+        return YetAnotherConfigLib.createBuilder()
+            .title(Component.translatable("config.stacksizeadjuster.title"))
+            .category(ConfigCategory.createBuilder()
+                .name(Component.translatable("config.stacksizeadjuster.category.general"))
+                .group(OptionGroup.createBuilder()
+                    .name(Component.translatable("config.stacksizeadjuster.group.categories"))
+                    .option(Option.<Integer>createBuilder()
+                        .name(Component.translatable("config.stacksizeadjuster.option.limit_64"))
+                        .description(val -> {
+                            if (val > 39768215) {
+                                return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.warning", val));
+                            }
+                            return OptionDescription.of(Component.translatable("config.stacksizeadjuster.option.limit_64.description"));
+                        })
+                        .binding(128, () -> config.items64Limit, val -> config.items64Limit = val)
+                        .controller(opt -> IntegerFieldControllerBuilder.create(opt).min(1).max(Integer.MAX_VALUE))
+                        .build()
+                    )
+                    ...
+                )
+                .group(OptionGroup.createBuilder()
+                    .name(Component.translatable("config.stacksizeadjuster.group.container_drops"))
+                    .option(Option.<Integer>createBuilder()
+                        .name(Component.translatable("config.stacksizeadjuster.option.max_drop_entities"))
+                        .binding(8, () -> config.maxDropEntities, val -> config.maxDropEntities = val)
+                        .customController(opt -> new IntegerSliderController(opt, 1, 64, 1))
+                        .build()
+                    )
+                )
+                .build()
+            )
+            .save(StackSizeConfig::save)
+            .build()
+            .generateScreen(parent);
+    }
+}
+```
+
+### Notification d'avertissement
+Si une valeur supérieure à $39\,768\,215$ est saisie, YACL affiche une infobulle d'avertissement sur les risques de débordement dans les grands coffres.
