@@ -1,0 +1,55 @@
+{
+    "schemaVersion": 1,
+    "id": "stack-size-adjuster",
+    "version": "${version}",
+    "name": "Stack Size Adjuster",
+    "description": "Allows customizing item stack sizes dynamically for 64-stackable, 16-stackable, and non-stackable item categories using GameRules or configuration screens.",
+    "authors": [
+        "Dasik (Rifaditya)"
+    ],
+    "contact": {
+        "homepage": "https://github.com/Dasik/Instant-Gratification-stack-size-adjuster",
+        "sources": "https://github.com/Dasik/Instant-Gratification-stack-size-adjuster"
+    },
+    "license": "GPL-3.0-or-later",
+    "icon": "assets/stacksizeadjuster/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "net.instantgratification.stacksizeadjuster.StackSizeAdjusterFabric"
+        ],
+        "client": [
+            "net.instantgratification.stacksizeadjuster.StackSizeAdjusterFabricClient"
+        ],
+        "modmenu": [
+            "net.instantgratification.stacksizeadjuster.config.ModMenuIntegration"
+        ]
+    },
+    "mixins": [
+        "stack-size-adjuster.mixins.json",
+        {
+            "config": "stack-size-adjuster.client.mixins.json",
+            "environment": "client"
+        }
+    ],
+    "depends": {
+        "fabricloader": ">=0.19.3",
+        "minecraft": ">=26.3-",
+        "java": ">=25",
+        "fabric-api": "*",
+        "dasik-library": "*",
+        "item_clumps": ">=1.0.18"
+    },
+    "suggests": {
+        "cloth-config": "*",
+        "modmenu": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.donate": "https://ko-fi.com/dasikigaijin",
+                "modmenu.kofi": "https://ko-fi.com/dasikigaijin"
+            }
+        }
+    }
+}
