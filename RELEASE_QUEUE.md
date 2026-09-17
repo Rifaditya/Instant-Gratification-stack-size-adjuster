@@ -4,6 +4,7 @@ This file tracks which built versions (from the central archive folder "g:\Other
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.4.19+26.2`** (2026-09-17) - Conventional Tag Exemption (#c:stack_size_exempt). - Added `#c:stack_size_exempt` conventional item tag support to allow modpack authors and datapacks to exempt specific items from global stack adjustments.
 - [x] **`1.4.18+26.2`** (2026-08-10) - Fix OutOfMemory Infinite Loop. - Fixed negative maxStackSize (-1) return handling in StackSizeManager and added positive bounds fail-safe guard to prevent LootTable infinite loops.
 - [x] **`1.4.17+26.2`** (SUPERSEDED) (2026-08-10) - CustomStackSizeOverride API Fix. - Added `CustomStackSizeOverride` API in `StackSizeManager` allowing addon mods to explicitly override stack limits without being overwritten by general category fallbacks.
 - [x] **`1.4.16+26.2`** (2026-07-22) - ModVersionGuard Knot ClassLoader Fix. - Updated `ModVersionGuard.java` to use Knot ClassLoader resolution (`Thread.currentThread().getContextClassLoader()`) and display explicit pre-release protection warnings upon an API mismatch.

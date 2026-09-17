@@ -1,8 +1,12 @@
+// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.instantgratification.stacksizeadjuster.util;
 
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
 import net.instantgratification.stacksizeadjuster.network.StackSizeLimitSyncPayload;
 
 import net.minecraft.world.item.Item;
@@ -11,6 +15,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.BiFunction;
 
 public class StackSizeManager {
+    public static final TagKey<Item> C_STACK_SIZE_EXEMPT = TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath("c", "stack_size_exempt"));
+
     private static volatile int limit64 = 64;
     private static volatile int limit16 = 16;
     private static volatile int limit1 = 1;
@@ -40,6 +46,11 @@ public class StackSizeManager {
 
     public static int getModifiedStackSize(Item item, int original) {
         if (original <= 0) {
+            return original;
+        }
+
+        // 0. Check Conventional Tag exemption (#c:stack_size_exempt)
+        if (item != null && item.builtInRegistryHolder().is(C_STACK_SIZE_EXEMPT)) {
             return original;
         }
 
