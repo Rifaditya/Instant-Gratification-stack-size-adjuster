@@ -1,0 +1,11 @@
+{
+    "required": true,
+    "package": "net.instantgratification.stacksizeadjuster.mixin.client",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "GuiGraphicsMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

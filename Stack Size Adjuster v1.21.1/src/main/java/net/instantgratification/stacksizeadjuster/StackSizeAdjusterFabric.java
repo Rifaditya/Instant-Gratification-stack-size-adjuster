@@ -1,0 +1,128 @@
+// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
+package net.instantgratification.stacksizeadjuster;
+
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.gamerule.v1.CustomGameRuleCategory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleFactory;
+import net.fabricmc.fabric.api.gamerule.v1.GameRuleRegistry;
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.GameRules;
+import net.instantgratification.stacksizeadjuster.config.StackSizeConfig;
+import net.instantgratification.stacksizeadjuster.network.StackSizeLimitSyncPayload;
+import net.instantgratification.stacksizeadjuster.util.StackSizeManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class StackSizeAdjusterFabric implements ModInitializer {
+    public static final String MOD_ID = "stack-size-adjuster";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    public static final CustomGameRuleCategory CUSTOM_CATEGORY = new CustomGameRuleCategory(
+        ResourceLocation.fromNamespaceAndPath(MOD_ID, MOD_ID),
+        Component.translatable("gamerule.category." + MOD_ID + "." + MOD_ID)
+    );
+
+    public static GameRules.Key<GameRules.IntegerValue> ITEMS_64_LIMIT;
+    public static GameRules.Key<GameRules.IntegerValue> ITEMS_16_LIMIT;
+    public static GameRules.Key<GameRules.IntegerValue> ITEMS_1_LIMIT;
+    public static GameRules.Key<GameRules.IntegerValue> MAX_DROP_ENTITIES;
+
+    public static int maxDropEntities = 8;
+
+    @Override
+    public void onInitialize() {
+        LOGGER.info("Instant Gratification: Stack Size Adjuster Initialized (1.21.1)");
+
+        // Load config baseline template
+        StackSizeConfig.load(FabricLoader.getInstance().getConfigDir());
+        maxDropEntities = StackSizeConfig.get().maxDropEntities;
+
+        // Register GameRules via GameRuleRegistry.register(...) with change callbacks invoking StackSizeManager.setLimits(...)
+        ITEMS_64_LIMIT = GameRuleRegistry.register(
+            "items_64_limit",
+            CUSTOM_CATEGORY,
+            GameRuleFactory.createIntRule(StackSizeConfig.get().items64Limit, 1, Integer.MAX_VALUE, (server, rule) -> {
+                StackSizeManager.setLimit("items_64_limit", rule.get(), server);
+                broadcastSync(server);
+            })
+        );
+
+        ITEMS_16_LIMIT = GameRuleRegistry.register(
+            "items_16_limit",
+            CUSTOM_CATEGORY,
+            GameRuleFactory.createIntRule(StackSizeConfig.get().items16Limit, 1, Integer.MAX_VALUE, (server, rule) -> {
+                StackSizeManager.setLimit("items_16_limit", rule.get(), server);
+                broadcastSync(server);
+            })
+        );
+
+        ITEMS_1_LIMIT = GameRuleRegistry.register(
+            "items_1_limit",
+            CUSTOM_CATEGORY,
+            GameRuleFactory.createIntRule(StackSizeConfig.get().items1Limit, 1, Integer.MAX_VALUE, (server, rule) -> {
+                StackSizeManager.setLimit("items_1_limit", rule.get(), server);
+                broadcastSync(server);
+            })
+        );
+
+        MAX_DROP_ENTITIES = GameRuleRegistry.register(
+            "max_drop_entities",
+            CUSTOM_CATEGORY,
+            GameRuleFactory.createIntRule(StackSizeConfig.get().maxDropEntities, 1, 64, (server, rule) -> {
+                maxDropEntities = rule.get();
+            })
+        );
+
+        // Register payload via PayloadTypeRegistry.playS2C().register(...)
+        PayloadTypeRegistry.playS2C().register(StackSizeLimitSyncPayload.TYPE, StackSizeLimitSyncPayload.CODEC);
+
+        // Send sync payload on ServerPlayConnectionEvents.JOIN
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            sender.sendPacket(new StackSizeLimitSyncPayload(
+                StackSizeManager.getLimit64(),
+                StackSizeManager.getLimit16(),
+                StackSizeManager.getLimit1()
+            ));
+        });
+
+        // Synchronize on ServerLifecycleEvents.SERVER_STARTED
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> {
+            StackSizeConfig.load(FabricLoader.getInstance().getConfigDir());
+
+            GameRules rules = server.getGameRules();
+
+            if (!server.getWorldData().overworldData().isInitialized()) {
+                rules.getRule(ITEMS_64_LIMIT).set(StackSizeConfig.get().items64Limit, server);
+                rules.getRule(ITEMS_16_LIMIT).set(StackSizeConfig.get().items16Limit, server);
+                rules.getRule(ITEMS_1_LIMIT).set(StackSizeConfig.get().items1Limit, server);
+                rules.getRule(MAX_DROP_ENTITIES).set(StackSizeConfig.get().maxDropEntities, server);
+            }
+
+            int l64 = rules.getInt(ITEMS_64_LIMIT);
+            int l16 = rules.getInt(ITEMS_16_LIMIT);
+            int l1 = rules.getInt(ITEMS_1_LIMIT);
+            maxDropEntities = rules.getInt(MAX_DROP_ENTITIES);
+            StackSizeManager.setLimits(l64, l16, l1, server);
+        });
+    }
+
+    private static void broadcastSync(MinecraftServer server) {
+        if (server == null) return;
+        StackSizeLimitSyncPayload payload = new StackSizeLimitSyncPayload(
+            StackSizeManager.getLimit64(),
+            StackSizeManager.getLimit16(),
+            StackSizeManager.getLimit1()
+        );
+        for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+            ServerPlayNetworking.send(player, payload);
+        }
+    }
+}

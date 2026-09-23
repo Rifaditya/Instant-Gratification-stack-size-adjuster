@@ -4,6 +4,10 @@ This file tracks which built versions (from the central archive folder "g:\Other
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.4.19+26.1.2`** (2026-09-23) - Initial MC 26.1.2 Release. - Parity with 1.4.19+26.2 feature set (#c:stack_size_exempt conventional tag, soft-suggests item-clumps).
+- [ ] **`1.0.0+1.21.11`** (2026-09-23) - Initial MC 1.21.11 Release. - Ground-zero port with DataComponents MAX_STACK_SIZE unclamp, StreamCodec networking, and compact count rendering.
+- [ ] **`1.0.0+1.21.1`** (2026-09-23) - Initial MC 1.21.1 Release. - Java 21 Loom 1.10.2 port with DataComponents unclamp and CustomPacketPayload networking.
+- [ ] **`1.0.0+1.20.1`** (2026-09-23) - Initial MC 1.20.1 Release. - Java 17 Ground-zero port with Item/ItemStack getMaxStackSize injection and PacketByteBuf networking.
 - [ ] **`1.4.19+26.2`** (2026-09-17) - Conventional Tag Exemption (#c:stack_size_exempt). - Added `#c:stack_size_exempt` conventional item tag support to allow modpack authors and datapacks to exempt specific items from global stack adjustments.
 - [x] **`1.4.18+26.2`** (2026-08-10) - Fix OutOfMemory Infinite Loop. - Fixed negative maxStackSize (-1) return handling in StackSizeManager and added positive bounds fail-safe guard to prevent LootTable infinite loops.
 - [x] **`1.4.17+26.2`** (SUPERSEDED) (2026-08-10) - CustomStackSizeOverride API Fix. - Added `CustomStackSizeOverride` API in `StackSizeManager` allowing addon mods to explicitly override stack limits without being overwritten by general category fallbacks.

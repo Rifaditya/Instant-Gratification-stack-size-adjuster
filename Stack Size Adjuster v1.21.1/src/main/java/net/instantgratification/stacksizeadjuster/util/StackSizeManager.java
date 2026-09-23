@@ -1,0 +1,129 @@
+// Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
+package net.instantgratification.stacksizeadjuster.util;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.BiFunction;
+
+// Verified against: TagKey.java, ResourceLocation.java (1.21.1)
+public class StackSizeManager {
+    public static final TagKey<Item> C_STACK_SIZE_EXEMPT = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c", "stack_size_exempt"));
+
+    private static volatile int limit64 = 64;
+    private static volatile int limit16 = 16;
+    private static volatile int limit1 = 1;
+
+    private static final List<CustomStackSizeOverride> CUSTOM_OVERRIDES = new CopyOnWriteArrayList<>();
+    private static final List<BiFunction<Item, Integer, Integer>> OVERRIDES = new CopyOnWriteArrayList<>();
+
+    public static void registerOverride(CustomStackSizeOverride override) {
+        CUSTOM_OVERRIDES.add(override);
+    }
+
+    public static void registerOverride(BiFunction<Item, Integer, Integer> override) {
+        OVERRIDES.add(override);
+    }
+
+    public static int getLimit64() {
+        return limit64;
+    }
+
+    public static int getLimit16() {
+        return limit16;
+    }
+
+    public static int getLimit1() {
+        return limit1;
+    }
+
+    public static int getModifiedStackSize(Item item, int original) {
+        if (original <= 0) {
+            return original;
+        }
+
+        // 0. Check Conventional Tag exemption (#c:stack_size_exempt)
+        if (item != null && item.builtInRegistryHolder().is(C_STACK_SIZE_EXEMPT)) {
+            return original;
+        }
+
+        // 1. Check custom overrides from addons (e.g. Stew Stacker, Potion Stacker)
+        for (CustomStackSizeOverride override : CUSTOM_OVERRIDES) {
+            int customSize = override.getCustomStackSize(item, original);
+            if (customSize >= 0) {
+                return customSize;
+            }
+        }
+
+        // 2. Legacy fallback for BiFunction overrides (only accept positive values != original)
+        for (BiFunction<Item, Integer, Integer> override : OVERRIDES) {
+            int legacySize = override.apply(item, original);
+            if (legacySize >= 0 && legacySize != original) {
+                return legacySize;
+            }
+        }
+
+        int result = original;
+        if (original >= 64) {
+            result = limit64;
+        } else if (original >= 16) {
+            result = limit16;
+        } else if (original == 1) {
+            result = limit1;
+        }
+
+        // Fail-safe guard: Ensure return value is NEVER <= 0 to prevent infinite loops in LootTable.createStackSplitter
+        if (result <= 0) {
+            return original > 0 ? original : 1;
+        }
+        return result;
+    }
+
+    public static void setLimits(int l64, int l16, int l1, MinecraftServer server) {
+        boolean changed = (l64 != limit64 || l16 != limit16 || l1 != limit1);
+        if (changed) {
+            limit64 = l64;
+            limit16 = l16;
+            limit1 = l1;
+            if (server != null) {
+                for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+                    // Force refresh client's container and inventory menus dynamically
+                    if (player.containerMenu != null) {
+                        player.containerMenu.broadcastFullState();
+                    }
+                    if (player.inventoryMenu != null && player.containerMenu != player.inventoryMenu) {
+                        player.inventoryMenu.broadcastFullState();
+                    }
+                }
+            }
+        }
+    }
+
+    public static void setLimit(String path, int value, MinecraftServer server) {
+        int next64 = limit64;
+        int next16 = limit16;
+        int next1 = limit1;
+
+        if (path.equals("items_64_limit")) {
+            next64 = value;
+        } else if (path.equals("items_16_limit")) {
+            next16 = value;
+        } else if (path.equals("items_1_limit")) {
+            next1 = value;
+        }
+
+        setLimits(next64, next16, next1, server);
+    }
+
+    public static void setClientLimits(int l64, int l16, int l1) {
+        limit64 = l64;
+        limit16 = l16;
+        limit1 = l1;
+    }
+}

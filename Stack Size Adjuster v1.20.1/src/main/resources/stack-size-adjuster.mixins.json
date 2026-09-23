@@ -1,0 +1,16 @@
+{
+    "required": true,
+    "package": "net.instantgratification.stacksizeadjuster.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "mixins": [
+        "AbstractContainerMenuMixin",
+        "ContainerMixin",
+        "ContainersMixin",
+        "GiveCommandMixin",
+        "ItemMixin",
+        "ItemStackMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
