@@ -1,61 +1,42 @@
 # Developer Setup & Building
 
-## Workspace Requirements
+## Workspace Requirements by Minecraft Era
 
-* **Java Development Kit (JDK)**: JDK 25 (`org.gradle.java.home=E:/JDK25`)
-* **Gradle Tooling**: Gradle 9.3+ (executed via `./gradlew --no-daemon`)
-* **Loom Plugin**: Fabric Loom 1.15+
-* **Target Minecraft**: 26.2
+Under the **1 Jar 1 Version Policy**, Stack Size Adjuster maintains dedicated subprojects for each supported Minecraft version anchor:
+
+| Version Subproject | Target Minecraft | Java Toolchain | Loom Plugin | Gradle Version |
+| :--- | :--- | :--- | :--- | :--- |
+| `Stack Size Adjuster v26.3` | **26.3** | **JDK 25** (`E:/JDK25`) | Fabric Loom 1.15+ | Gradle 9.3+ |
+| `Stack Size Adjuster v26.2` | **26.2** | **JDK 25** (`E:/JDK25`) | Fabric Loom 1.15+ | Gradle 9.3+ |
+| `Stack Size Adjuster v26.1.2` | **26.1.2** | **JDK 25** (`E:/JDK25`) | Fabric Loom 1.15+ | Gradle 9.3+ |
+| `Stack Size Adjuster v1.21.11` | **1.21.11** | **JDK 21** (`E:/JDK21`) | Fabric Loom 1.11+ | Gradle 8.11+ |
+| `Stack Size Adjuster v1.21.1` | **1.21.1** | **JDK 21** (`E:/JDK21`) | Fabric Loom 1.10.2 | Gradle 8.11+ |
+| `Stack Size Adjuster v1.20.1` | **1.20.1** | **JDK 17** (`E:/JDK17`) | Fabric Loom 1.10.2 | Gradle 8.11+ |
 
 ---
 
 ## 🛠️ Environment Configuration
 
-`gradle.properties` defines build properties for the project:
+Each subproject contains its own isolated `gradle.properties` specifying version coordinates and dependencies.
 
-```properties
-org.gradle.parallel=true
-org.gradle.java.home=E:/JDK25
+### Compilation Commands
 
-# Mod Properties
-mod_name=Stack Size Adjuster
-mod_version=1.4.16+26.2
-maven_group=net.instantgratification
-archives_base_name=stack-size-adjuster
+Navigate to the respective subproject directory or execute Gradle wrapper:
 
-# Dependencies
-minecraft_version=26.2
-minecraft_dependency=>=26.2-
-parchment_minecraft_version=26.2
-parchment_version=2026.01.22
-
-# Fabric
-fabric_version=0.150.1+26.2
-fabric_loader_version=0.19.1
-
-# DasikLibrary
-dasik_library_version=1.8.3
-```
-
----
-
-## 💻 Gradle Build Commands
-
-### Clean & Compile Release JAR
 ```powershell
+# Compile release JAR for targeted subproject
 ./gradlew build --no-daemon
-```
-The compiled output binary is placed at:
-`build/libs/stack-size-adjuster-1.4.16+26.2.jar`
 
-### Execute Automated Unit Tests
-```powershell
+# Execute automated tests
 ./gradlew test --no-daemon
 ```
 
 ---
 
-## 📦 Archiving Law Execution
+## 📦 Mandatory Universal Triple-Archive Law
 
-Under the **Archive Centralization Law**, immediately following `./gradlew build`, copy the generated release JAR into the outer archive directory:
-`Archive Jar of all versions/stack-size-adjuster-1.4.16+26.2.jar`
+Immediately following `./gradlew build`, the compiled release binary must be distributed to all 3 mandatory destinations:
+
+1. **Mod Local Archive**: `<Mod Root>/Archive Jar of all versions/MC <Version>/`
+2. **Central Hub Archive**: `minecraft-mod-release-hub/archives/Stack Size Adjuster/`
+3. **External Vault Archive**: `D:\Minecraft Mod Archive Jars\Stack Size Adjuster\`

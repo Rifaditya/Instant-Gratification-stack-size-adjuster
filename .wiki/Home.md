@@ -1,6 +1,6 @@
 # Instant Gratification: Stack Size Adjuster Wiki
 
-![Minecraft 26.2](https://img.shields.io/badge/Minecraft-26.2-brightgreen.svg) ![Fabric Loader](https://img.shields.io/badge/Fabric-0.19.1+-blue.svg) ![License GPLv3](https://img.shields.io/badge/License-GPLv3-orange.svg) ![DasikLibrary](https://img.shields.io/badge/DasikLibrary-1.8.3-purple.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1%20|%201.21.1%20|%201.21.11%20|%2026.1.2%20|%2026.2%20|%2026.3-brightgreen.svg) ![Fabric Loader](https://img.shields.io/badge/Fabric-0.16.0+-blue.svg) ![License GPLv3](https://img.shields.io/badge/License-GPLv3-orange.svg)
 
 Welcome to the official encyclopedic documentation for **Instant Gratification: Stack Size Adjuster**. This Minecraft Fabric mod empowers server administrators and players to dynamically customize item stack sizes across three natural categories (64-stackable, 16-stackable, and non-stackable items) up to extreme quantities without NBT inflation, while providing container drop optimization and overflow protection.
 
@@ -14,8 +14,8 @@ Welcome to the official encyclopedic documentation for **Instant Gratification: 
 
 ## 📦 Minecraft Versions Directory
 
+* [[Version Compatibility Matrix|Version-Compatibility]] — Multi-era compatibility matrix, toolchains (Java 17, 21, 25), and dependency bounds.
 * [[Minecraft 26.2 Target Guide|Minecraft-26.2-Guide]] — Official installation, dependencies, and setup for Minecraft 26.2.
-* [[Version Compatibility Matrix|Version-Compatibility]] — Supported versions, `ModVersionGuard` check, and dependency bounds.
 
 ---
 

@@ -4,41 +4,46 @@
 
 ---
 
-## 📊 Compatibility Matrix
+## 📊 Multi-Era Compatibility Matrix
 
-| Minecraft Target | Mod Version | Build Status | DasikLibrary Target | Dependency Bounds |
-| :--- | :--- | :--- | :--- | :--- |
-| **MC 26.2** | `1.4.16+26.2` | **Active / Current** | `1.8.3` | `minecraft >=26.2-` |
+| Minecraft Target | Mod Version | Build Status | Java Target | Loader Target | Dependencies & Bounds |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **MC 26.3** | `1.4.19+26.3` | **Active / Current** | `Java 25` | `>=0.19.1` | `fabric-api`, `item_clumps (>=1.0.18+26.2)` |
+| **MC 26.2** | `1.4.19+26.2` | **Active / Current** | `Java 25` | `>=0.19.1` | `fabric-api`, `item_clumps (>=1.0.18+26.2)` |
+| **MC 26.1.2** | `1.4.19+26.1.2` | **Active / Current** | `Java 25` | `>=0.19.1` | `fabric-api` (item_clumps optional/suggested) |
+| **MC 1.21.11** | `1.0.0+1.21.11` | **Active / Current** | `Java 21` | `>=0.18.4` | `fabric-api` (item_clumps optional/suggested) |
+| **MC 1.21.1** | `1.0.0+1.21.1` | **Active / Current** | `Java 21` | `>=0.16.0` | `fabric-api` (item_clumps optional/suggested) |
+| **MC 1.20.1** | `1.0.0+1.20.1` | **Active / Current** | `Java 17` | `>=0.16.0` | `fabric-api` (item_clumps optional/suggested) |
 
 ---
 
-## 🛡️ Dependency Bounds & Rules
+## 🛡️ "1 Jar 1 Version" Policy & Dependency Bounds
 
-Under the **1 Jar 1 Version** law, dependency entries in `fabric.mod.json` enforce open-ended lower bounds:
+Under the **1 Jar 1 Version** policy:
+- We compile dedicated binaries per targeted Minecraft version (e.g. `MC 26.3`, `MC 26.2`, `MC 26.1.2`, `MC 1.21.11`, `MC 1.21.1`, and `MC 1.20.1`).
+- Please download the exact build matching your Minecraft installation.
 
-```json
-"depends": {
-    "fabricloader": ">=0.19.1",
-    "minecraft": "${minecraft_dependency}",
-    "java": ">=25",
-    "fabric-api": "*",
-    "dasik-library": "*",
-    "item_clumps": ">=1.0.18+26.2"
-}
-```
+### Java Toolchain Architecture by Era
 
-### Version Identity Rules:
-1. **Zero Legacy Schemes**: No `1.21.x` version numbers are retained for Minecraft 26.x releases.
-2. **Open-Ended Dependency Lower Bounds**: `minecraft >=26.2-` permits patch release compatibility without pre-release locks.
-3. **Classpath Verification**: Mod initialization executes `ModVersionGuard.checkClass` using `Thread.currentThread().getContextClassLoader()`.
+1. **Modern 26.x Era (MC 26.1.2, 26.2, 26.3)**:
+   - **Java Target**: Java 25.
+   - **Architecture**: `DataComponents` unclamp, `ItemInstance`, plural `EntityTypes`, Mojang unmapped names.
+2. **Intermediate 1.21.x Era (MC 1.21.1, 1.21.11)**:
+   - **Java Target**: Java 21.
+   - **Architecture**: `DataComponents.MAX_STACK_SIZE` codec unclamp, `CustomPacketPayload` records with `StreamCodec`, singular `EntityType.ITEM`.
+3. **Legacy 1.20.1 Era (MC 1.20.1)**:
+   - **Java Target**: Java 17.
+   - **Architecture**: Zero `DataComponents`. Direct method injection on `Item.getMaxStackSize()` and `ItemStack.getMaxStackSize()`, classic `PacketByteBuf` networking via `ServerPlayNetworking` / `ClientPlayNetworking`.
 
 ---
 
 ## 📦 Verified Historical Archives
 
-All compiled historical release binaries are stored permanently in the repository's `Archive Jar of all versions/` directory.
+All compiled historical release binaries are stored permanently in the repository's `Archive Jar of all versions/` directory:
 
-- `stack-size-adjuster-1.4.16+26.2.jar` (Current Release)
-- `stack-size-adjuster-1.4.15+26.2.jar`
-- `stack-size-adjuster-1.4.14+26.2.jar`
-- `stack-size-adjuster-1.0.0+26.2.jar` (Initial 26.2 Release)
+- `Archive Jar of all versions/MC 26.3/stack-size-adjuster-1.4.19+26.3.jar`
+- `Archive Jar of all versions/MC 26.2/stack-size-adjuster-1.4.19+26.2.jar`
+- `Archive Jar of all versions/MC 26.1.2/stack-size-adjuster-1.4.19+26.1.2.jar`
+- `Archive Jar of all versions/MC 1.21.11/stack-size-adjuster-1.0.0+1.21.11.jar`
+- `Archive Jar of all versions/MC 1.21.1/stack-size-adjuster-1.0.0+1.21.1.jar`
+- `Archive Jar of all versions/MC 1.20.1/stack-size-adjuster-1.0.0+1.20.1.jar`

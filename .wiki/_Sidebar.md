@@ -3,8 +3,8 @@
 ---
 
 ### 📦 Minecraft Target
-* [[Minecraft 26.2 Guide|Minecraft-26.2-Guide]]
 * [[Version Compatibility|Version-Compatibility]]
+* [[Minecraft 26.2 Guide|Minecraft-26.2-Guide]]
 
 ---
 

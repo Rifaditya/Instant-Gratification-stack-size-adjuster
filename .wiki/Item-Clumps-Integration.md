@@ -2,7 +2,10 @@
 
 ## Overview
 
-Stack Size Adjuster works in direct synergy with **Item Clumps** (`item_clumps >=1.0.18+26.2`). While Stack Size Adjuster controls item stack limits in inventories and container drop caps, Item Clumps handles nearby ground entity merging.
+Stack Size Adjuster works in direct synergy with **Item Clumps** to prevent entity lag. 
+
+- **Minecraft 26.2 & 26.3**: `item_clumps` is declared as a recommended companion dependency (`item_clumps >=1.0.18+26.2`).
+- **Minecraft 26.1.2, 1.21.x, and 1.20.1**: `item_clumps` is soft-suggested (`suggests` in `fabric.mod.json`), allowing standalone installation without hard dependency requirements.
 
 ---
 
@@ -19,7 +22,7 @@ Splits stack into capped entity count (e.g. max 8 entities per slot)
 [ Entities Spawned on Ground ]
            |
            v
-[ Item Clumps Mod: Ground Entity Merging ]
+[ Item Clumps Mod: Ground Entity Merging ] (When installed)
 Scans 3.5 block radius and merges item entities into a single entity pile
            |
            v

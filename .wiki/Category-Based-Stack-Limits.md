@@ -2,10 +2,16 @@
 
 ## System Overview
 
-Minecraft naturally categorizes items into three primary stack tiers via `DataComponents.MAX_STACK_SIZE`:
+Minecraft naturally categorizes items into three primary stack tiers via `DataComponents.MAX_STACK_SIZE` (in 1.21+ / 26.x) or `Item.getMaxStackSize` (in 1.20.1):
 1. **64-Stackable**: Building blocks, resources, common items (e.g. Cobblestone, Dirt, Iron Ingot).
 2. **16-Stackable**: Ender pearls, snowballs, buckets, eggs, signboards.
 3. **1-Stackable (Unstackable)**: Tools, weapons, armor, potions, saddles, minecarts.
+
+---
+
+## 🏷️ Conventional Tag Exemption (`#c:stack_size_exempt`)
+
+Items tagged under `#c:stack_size_exempt` (via conventional data packs or mod integrations) bypass dynamic stack size scaling entirely and maintain their vanilla natural limits. This allows modpack authors to protect custom items, backpacks, or fragile containers from scaling.
 
 ---
 
@@ -17,8 +23,11 @@ Minecraft naturally categorizes items into three primary stack tiers via `DataCo
                  +--------------------------------+
                                   |
                                   v
-                  [ Check Registered Overrides ]
-                  (e.g., Potion Stacker Addon)
+                [ #c:stack_size_exempt Tag? ] -----> Yes ----> Return Natural Default
+                                  |
+                                  v No
+                   [ Check Registered Overrides ]
+                   (e.g., Potion Stacker Addon)
                                   |
                  +----------------+----------------+
                  |                                 |
@@ -26,7 +35,7 @@ Minecraft naturally categorizes items into three primary stack tiers via `DataCo
                  |                                 |
                  v                                 v
         Return Custom Limit           Inspect Natural Default
-                                       (DataComponents)
+                                       (DataComponents or Item)
                                                    |
                      +-----------------------------+-----------------------------+
                      |                             |                             |
@@ -48,13 +57,24 @@ public static int getModifiedStackSize(Item item, int original) {
         return original;
     }
 
-    // Apply registered overrides from addons (e.g. Potion Stacker)
-    int size = original;
-    for (BiFunction<Item, Integer, Integer> override : OVERRIDES) {
-        size = override.apply(item, size);
+    // 0. Check Conventional Tag exemption (#c:stack_size_exempt)
+    if (item != null && item.builtInRegistryHolder().is(C_STACK_SIZE_EXEMPT)) {
+        return original;
     }
-    if (size != original) {
-        return size;
+
+    // 1. Check custom overrides from addons (e.g. Stew Stacker, Potion Stacker)
+    for (CustomStackSizeOverride override : CUSTOM_OVERRIDES) {
+        int customSize = override.getCustomStackSize(item, original);
+        if (customSize >= 0) {
+            return customSize;
+        }
+    }
+
+    for (BiFunction<Item, Integer, Integer> override : OVERRIDES) {
+        int size = override.apply(item, original);
+        if (size != original) {
+            return size;
+        }
     }
 
     if (original >= 64) {
