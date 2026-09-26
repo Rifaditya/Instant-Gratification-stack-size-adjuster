@@ -1,24 +1,24 @@
 // Copyright (C) 2026 Dasik (Rifaditya) | GNU GPLv3
 package net.instantgratification.stacksizeadjuster;
 
+import net.dasik.social.api.gamerule.DynamicGameRuleManager;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.gamerule.v1.CustomGameRuleCategory;
-import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.gamerules.GameRule;
+import net.minecraft.world.level.gamerules.GameRuleCategory;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.instantgratification.stacksizeadjuster.config.StackSizeConfig;
 import net.instantgratification.stacksizeadjuster.network.StackSizeLimitSyncPayload;
 import net.instantgratification.stacksizeadjuster.util.StackSizeManager;
+import net.instantgratification.stacksizeadjuster.util.StackSizeSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,10 +26,7 @@ public class StackSizeAdjusterFabric implements ModInitializer {
     public static final String MOD_ID = "stack-size-adjuster";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-    public static final CustomGameRuleCategory CUSTOM_CATEGORY = new CustomGameRuleCategory(
-        Identifier.fromNamespaceAndPath(MOD_ID, MOD_ID),
-        Component.translatable("gamerule.category." + MOD_ID + "." + MOD_ID)
-    );
+    public static GameRuleCategory CUSTOM_CATEGORY;
 
     public static GameRule<Integer> ITEMS_64_LIMIT;
     public static GameRule<Integer> ITEMS_16_LIMIT;
@@ -41,31 +38,38 @@ public class StackSizeAdjusterFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         LOGGER.info("Instant Gratification: Stack Size Adjuster Initialized (1.21.11)");
+        StackSizeSupport.logSupportNotice();
 
         // Load config baseline template
         StackSizeConfig.load(FabricLoader.getInstance().getConfigDir());
         maxDropEntities = StackSizeConfig.get().maxDropEntities;
 
         // Register GameRules with dynamic defaults loaded from baseline config
-        ITEMS_64_LIMIT = GameRuleBuilder.forInteger(StackSizeConfig.get().items64Limit)
-            .category(CUSTOM_CATEGORY)
-            .range(1, Integer.MAX_VALUE)
-            .buildAndRegister(Identifier.fromNamespaceAndPath(MOD_ID, "items_64_limit"));
+        CUSTOM_CATEGORY = DynamicGameRuleManager.registerCategory(Identifier.fromNamespaceAndPath(MOD_ID, MOD_ID));
 
-        ITEMS_16_LIMIT = GameRuleBuilder.forInteger(StackSizeConfig.get().items16Limit)
-            .category(CUSTOM_CATEGORY)
+        ITEMS_64_LIMIT = DynamicGameRuleManager.integerRule(MOD_ID + ":items_64_limit", CUSTOM_CATEGORY, StackSizeConfig.get().items64Limit)
+            .name("64-Stack Limit")
+            .description("Maximum stack size for items that naturally stack to 64.")
             .range(1, Integer.MAX_VALUE)
-            .buildAndRegister(Identifier.fromNamespaceAndPath(MOD_ID, "items_16_limit"));
+            .register();
 
-        ITEMS_1_LIMIT = GameRuleBuilder.forInteger(StackSizeConfig.get().items1Limit)
-            .category(CUSTOM_CATEGORY)
+        ITEMS_16_LIMIT = DynamicGameRuleManager.integerRule(MOD_ID + ":items_16_limit", CUSTOM_CATEGORY, StackSizeConfig.get().items16Limit)
+            .name("16-Stack Limit")
+            .description("Maximum stack size for items that naturally stack to 16.")
             .range(1, Integer.MAX_VALUE)
-            .buildAndRegister(Identifier.fromNamespaceAndPath(MOD_ID, "items_1_limit"));
+            .register();
 
-        MAX_DROP_ENTITIES = GameRuleBuilder.forInteger(StackSizeConfig.get().maxDropEntities)
-            .category(CUSTOM_CATEGORY)
+        ITEMS_1_LIMIT = DynamicGameRuleManager.integerRule(MOD_ID + ":items_1_limit", CUSTOM_CATEGORY, StackSizeConfig.get().items1Limit)
+            .name("1-Stack Limit")
+            .description("Maximum stack size for items that naturally stack to 1.")
+            .range(1, Integer.MAX_VALUE)
+            .register();
+
+        MAX_DROP_ENTITIES = DynamicGameRuleManager.integerRule(MOD_ID + ":max_drop_entities", CUSTOM_CATEGORY, StackSizeConfig.get().maxDropEntities)
+            .name("Max Drop Entities")
+            .description("Maximum item entities spawned per inventory slot when broken.")
             .range(1, 64)
-            .buildAndRegister(Identifier.fromNamespaceAndPath(MOD_ID, "max_drop_entities"));
+            .register();
 
         // Change callbacks invoking StackSizeManager.setLimits(...)
         GameRuleEvents.changeCallback(ITEMS_64_LIMIT).register((val, server) -> {

@@ -14,6 +14,9 @@ repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
     maven { url "https://maven.terraformersmc.com/releases/" }
+    flatDir {
+        dirs 'e:/Minecraft Project/Dasik Library v1.21.1/Archive Jar of all versions/MC 1.21.1'
+    }
 }
 
 dependencies {
@@ -21,6 +24,7 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.dasik.social:dasik-library:1.0.0+1.21.1"
 
     // Optional GUI Dependencies
     modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"

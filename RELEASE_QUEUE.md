@@ -4,6 +4,9 @@ This file tracks which built versions (from the central archive folder "g:\Other
 
 ## 🚀 Published & Backlog Queue
 
+- [ ] **`1.0.1+1.21.11`** (2026-09-24) - Dasik Library Integration (DynamicGameRuleManager, SocialLinks)
+- [ ] **`1.0.1+1.21.1`** (2026-09-24) - Dasik Library Integration (DynamicGameRuleManager, SocialLinks)
+- [ ] **`1.0.1+1.20.1`** (2026-09-24) - Dasik Library Integration (DynamicGameRuleManager, SocialLinks)
 - [ ] **`1.4.19+26.1.2`** (2026-09-23) - Initial MC 26.1.2 Release. - Parity with 1.4.19+26.2 feature set (#c:stack_size_exempt conventional tag, soft-suggests item-clumps).
 - [ ] **`1.0.0+1.21.11`** (2026-09-23) - Initial MC 1.21.11 Release. - Ground-zero port with DataComponents MAX_STACK_SIZE unclamp, StreamCodec networking, and compact count rendering.
 - [ ] **`1.0.0+1.21.1`** (2026-09-23) - Initial MC 1.21.1 Release. - Java 21 Loom 1.10.2 port with DataComponents unclamp and CustomPacketPayload networking.

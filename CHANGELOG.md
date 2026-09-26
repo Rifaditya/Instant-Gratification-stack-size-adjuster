@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.1+1.21.11] - 2026-09-24
+
+### Added
+- **Dasik Library Integration**: Integrated `dasik-library-1.0.0+1.21.11` runtime dependency.
+- **Dynamic GameRule Manager**: Registered `stack-size-adjuster` GameRules (`items_64_limit`, `items_16_limit`, `items_1_limit`, `max_drop_entities`) using `DynamicGameRuleManager` with dedicated category styling and automated descriptions.
+- **Creator & Support Notice**: Integrated `StackSizeSupport` linking to official community and creator resources via `SocialLinks`.
+
+## [1.0.1+1.21.1] - 2026-09-24
+
+### Added
+- **Dasik Library Integration**: Integrated `dasik-library-1.0.0+1.21.1` runtime dependency.
+- **Dynamic GameRule Manager**: Registered `stack-size-adjuster` GameRules (`items_64_limit`, `items_16_limit`, `items_1_limit`, `max_drop_entities`) using `DynamicGameRuleManager` with dedicated category styling and automated descriptions.
+- **Creator & Support Notice**: Integrated `StackSizeSupport` linking to official community and creator resources via `SocialLinks`.
+
+## [1.0.1+1.20.1] - 2026-09-24
+
+### Added
+- **Dasik Library Integration**: Integrated `dasik-library-1.0.0+1.20.1` runtime dependency.
+- **Dynamic GameRule Manager**: Registered `stack-size-adjuster` GameRules (`items_64_limit`, `items_16_limit`, `items_1_limit`, `max_drop_entities`) using `DynamicGameRuleManager` with dedicated category styling and automated descriptions.
+- **Creator & Support Notice**: Integrated `StackSizeSupport` linking to official community and creator resources via `SocialLinks`.
+
 ## [1.4.19+26.2] - 2026-09-17
 
 ### Added
