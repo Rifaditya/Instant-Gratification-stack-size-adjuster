@@ -3,7 +3,7 @@
 ## [1.4.19+26.2] - 2026-09-17
 
 ### Added
-- **Conventional Item Tag Exemption (`#c:stack_size_exempt`)**: Added support for `#c:stack_size_exempt` conventional item tag. Modpack authors can tag items in datapacks/KubeJS to preserve their exact vanilla stack size limits without being modified by global category limits.
+- **Conventional Item Tag Exemption** (`#c:stack_size_exempt`): Added support for `#c:stack_size_exempt` conventional item tag. Modpack authors can tag items in datapacks/KubeJS to preserve their exact vanilla stack size limits without being modified by global category limits.
 
 ## [1.4.18+26.2] - 2026-08-10
 

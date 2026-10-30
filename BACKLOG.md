@@ -1,14 +1,17 @@
 # 📌 Stack Size Adjuster Backlog
 
+<!-- Highest Historical ID: BL-SZA-004 (Next Ticket Must Start at BL-SZA-005) -->
+> **Next Available Ticket ID**: `[BL-SZA-005]`
+
 This file tracks planned features, technical refinements, performance optimizations, and deferred bug fixes for **Stack Size Adjuster**.
 
 ---
 
 ## 📊 Backlog Summary
 
-| ID | Category | Title | Priority | Target Version | Status |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| — | — | *No active backlog items* | — | — | — |
+| ID | Category | Title | Priority | Target Version | Status | Specification |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| [`BL-SZA-004`](tickets/BL-SZA-004.md) | `[GOVERNANCE]` | Storefront Reconciliation: Align Mod Pages with Current Public Release | `[HIGH]` | `Platform Pages` | `📌 DEFERRED` | [View Ticket](tickets/BL-SZA-004.md) |
 
 ---
 
@@ -19,6 +22,7 @@ This file tracks planned features, technical refinements, performance optimizati
 
 ---
 
-## 📝 Detailed Backlog Entries
+## 📝 Detailed Backlog Entries (Modular Storage)
 
-*(All previous items have been resolved and documented in CHANGELOG.md and History.md. New items will be queued here.)*
+> [!NOTE]
+> **Modular Backlog Architecture**: In accordance with Item 11 of the Studio Constitution (*The Modular Backlog Standard*), detailed specifications, implementation blueprints, and verification checklists are maintained in dedicated atomic ticket files located in [	ickets/](tickets/README.md). Click any **View Ticket** link in the summary table above or prompt worker agents directly with 	ickets/BL-SZA-XXX.md.

@@ -7,7 +7,7 @@ This file tracks which built versions (from the central archive folder "g:\Other
 - [ ] **`1.4.19+26.2`** (2026-09-17) - Conventional Tag Exemption (#c:stack_size_exempt). - Added `#c:stack_size_exempt` conventional item tag support to allow modpack authors and datapacks to exempt specific items from global stack adjustments.
 - [x] **`1.4.18+26.2`** (2026-08-10) - Fix OutOfMemory Infinite Loop. - Fixed negative maxStackSize (-1) return handling in StackSizeManager and added positive bounds fail-safe guard to prevent LootTable infinite loops.
 - [x] **`1.4.17+26.2`** (SUPERSEDED) (2026-08-10) - CustomStackSizeOverride API Fix. - Added `CustomStackSizeOverride` API in `StackSizeManager` allowing addon mods to explicitly override stack limits without being overwritten by general category fallbacks.
-- [x] **`1.4.16+26.2`** (2026-07-22) - ModVersionGuard Knot ClassLoader Fix. - Updated `ModVersionGuard.java` to use Knot ClassLoader resolution (`Thread.currentThread().getContextClassLoader()`) and display explicit pre-release protection warnings upon an API mismatch.
+- [ ] **`1.4.16+26.2`** (2026-07-22) - ModVersionGuard Knot ClassLoader Fix. - Updated `ModVersionGuard.java` to use Knot ClassLoader resolution (`Thread.currentThread().getContextClassLoader()`) and display explicit pre-release protection warnings upon an API mismatch.
 - [x] **`1.4.15+26.2`** (SUPERSEDED) (2026-07-22) - Forward Compatibility & Version Guard. - Configured `fabric.mod.json` with `"minecraft": ">=26.2-"` for open-ended forward compatibility. Added zero-dependency `ModVersionGuard` check on startup to display human-readable guidance if an incompatible Minecraft API version is encountered.
 - [x] **`1.4.14+26.2`** (SUPERSEDED) (2026-07-14) - Fix Give Command Integer Overflow. - Fixed integer overflow in `/give` command's max allowed count by using `long` calculations and safe clamping to `Integer.MAX_VALUE`.
 - [x] **`1.4.12+26.2`** (SUPERSEDED) (2026-07-11) - Fix Launch Crash. - Fixed launch crash due to `InvalidInjectionException` on `ItemStackMixin` by reverting `getMaxStackSize` inject to direct method override.
@@ -29,13 +29,13 @@ This file tracks which built versions (from the central archive folder "g:\Other
 - [x] **`1.3.3+26.2`** (SUPERSEDED) (2026-07-06) - Double Chest safe threshold. - Adjusted warning threshold to 39,768,215 (Double Chest limit).
 - [x] **`1.3.2+26.2`** (SUPERSEDED) (2026-07-06) - Doubled default stacks. - Doubled standard stack defaults (64 limit to 128, 16 limit to 32) while keeping 1-stack items at 1.
 - [x] **`1.3.1+26.2`** (SUPERSEDED) (2026-07-06) - Shulker Box Warning Threshold. - Set warning limit to 79,536,431 to prevent container-wide overflow when filling a Shulker Box.
-- [x] **`1.3.0+26.2`** (2026-07-06) - Serialization range fix. - Lifted serialization range checks from `DataComponents` (for shulker box contents) and `ItemStackTemplate` (for bundles) to allow saving items above 99.
-- [x] **`1.2.0+26.2`** (2026-07-06) - Live client refresh. - Force client container and inventory update when server game rules change, preventing relog requirements.
-- [x] **`1.1.0+26.2`** (2026-07-06) - Added overflow warnings. - Appended dynamic tooltip warnings recommending a max limit of 1 billion to prevent integer overflows.
-- [x] **`1.0.6+26.2`** (2026-07-06) - Overlapping text fix. - Dynamically scale stack count text scale down for items stacking above 99.
-- [x] **`1.0.5+26.2`** (2026-07-06) - Over-99 stack sizes. - Fixed inventory slot cap at 99. Overrode `Container.getMaxStackSize()` and updated `ItemStack` count codec limits.
-- [x] **`1.0.4+26.2`** (2026-07-06) - Renamed settings labels. - Updated labels to "64-Stack Limit", "16-Stack Limit", and "1-Stack Limit".
-- [x] **`1.0.3+26.2`** (2026-07-06) - Range expansion. - Changed stack limits to allow range 1 to `Integer.MAX_VALUE` and changed YACL screen to use integer text entry.
-- [x] **`1.0.2+26.2`** (2026-07-06) - UI fix. - Fixed category name not being bolded in GameRules list.
-- [x] **`1.0.1+26.2`** (2026-07-06) - Crash fix. - Resolved startup crash due to `InvalidMixinException` on `ItemStack.getMaxStackSize`. Override is now applied at interface-level.
+- [ ] **`1.3.0+26.2`** (2026-07-06) - Serialization range fix. - Lifted serialization range checks from `DataComponents` (for shulker box contents) and `ItemStackTemplate` (for bundles) to allow saving items above 99.
+- [ ] **`1.2.0+26.2`** (2026-07-06) - Live client refresh. - Force client container and inventory update when server game rules change, preventing relog requirements.
+- [ ] **`1.1.0+26.2`** (2026-07-06) - Added overflow warnings. - Appended dynamic tooltip warnings recommending a max limit of 1 billion to prevent integer overflows.
+- [ ] **`1.0.6+26.2`** (2026-07-06) - Overlapping text fix. - Dynamically scale stack count text scale down for items stacking above 99.
+- [ ] **`1.0.5+26.2`** (2026-07-06) - Over-99 stack sizes. - Fixed inventory slot cap at 99. Overrode `Container.getMaxStackSize()` and updated `ItemStack` count codec limits.
+- [ ] **`1.0.4+26.2`** (2026-07-06) - Renamed settings labels. - Updated labels to "64-Stack Limit", "16-Stack Limit", and "1-Stack Limit".
+- [ ] **`1.0.3+26.2`** (2026-07-06) - Range expansion. - Changed stack limits to allow range 1 to `Integer.MAX_VALUE` and changed YACL screen to use integer text entry.
+- [ ] **`1.0.2+26.2`** (2026-07-06) - UI fix. - Fixed category name not being bolded in GameRules list.
+- [ ] **`1.0.1+26.2`** (2026-07-06) - Crash fix. - Resolved startup crash due to `InvalidMixinException` on `ItemStack.getMaxStackSize`. Override is now applied at interface-level.
 - [x] **`1.0.0+26.2`** (SUPERSEDED) (2026-07-06) - Initial release. - Three categories for stack size customization: 64-stack, 16-stack, and 1-stack items. Independent namespaced GameRules: `stack-size-adjuster:items_64_limit`, `stack-size-adjuster:items_16_limit`, `stack-size-adjuster:items_1_limit`. Optional YACL and ModMenu integration.
