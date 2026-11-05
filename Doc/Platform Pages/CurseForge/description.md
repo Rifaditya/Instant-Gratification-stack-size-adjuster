@@ -1,202 +1,118 @@
 <p align="center">
-<a href="https://discord.gg/EV99bgAFqb"><img src="https://img.shields.io/badge/Discord-Join_Community-5865F2?style=for-the-badge&amp;logo=discord&amp;logoColor=white" alt="Join Discord"></a>
-<a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&amp;logo=fabric" alt="Requires Fabric API"></a>
-<img src="https://img.shields.io/badge/Environment-Server_&amp;_Client-success?style=for-the-badge" alt="Server &amp; Client">
-<img src="https://img.shields.io/badge/Language-Java_25-orange?style=for-the-badge&amp;logo=java" alt="Java 25">
-<img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License GPLv3">
-<img src="https://img.shields.io/badge/Minecraft-26.2+-brightgreen?style=for-the-badge" alt="Minecraft 26.2+">
+  <a href="https://discord.gg/EV99bgAFqb"><img src="https://img.shields.io/badge/Discord-Join_Community-5865F2?style=for-the-badge&amp;logo=discord&amp;logoColor=white" alt="Join Discord"></a>
+  <a href="https://modrinth.com/mod/fabric-api"><img src="https://img.shields.io/badge/Requires-Fabric_API-blue?style=for-the-badge&amp;logo=fabric" alt="Requires Fabric API"></a>
+  <a href="https://curseforge.com/minecraft/mc-mods/dasik-library"><img src="https://img.shields.io/badge/Requires-Dasik_Library-purple?style=for-the-badge" alt="Requires Dasik Library"></a>
+  <img src="https://img.shields.io/badge/Environment-Server_&amp;_Client-success?style=for-the-badge" alt="Server &amp; Client">
+  <img src="https://img.shields.io/badge/License-GPLv3-green?style=for-the-badge" alt="License GPLv3">
 </p>
-<h2>📦 Stack Size Adjuster</h2>
-<blockquote><p><strong>"Unshackle Your Inventory. Custom Stack Sizes Up to 9,999 with 100% Network Safety."</strong></p></blockquote>
-<hr>
-<h2>📖 Introduction</h2>
-<p>Minecraft's universal 64-item stack size ceiling was decided over 15 years ago when the game had a fraction of today's blocks, items, and crafting complexity. In modern survival, undertaking large-scale builds—such as castles, nether highways, terraformed mountains, or automated storage warehouses—demands endless tedious chest-sorting, dozens of shulker boxes, and constant back-and-forth hauling trips for simple building materials like Cobblestone, Dirt, Sand, and Logs.</p>
-<p><strong>Stack Size Adjuster</strong> solves the inventory crisis under the <strong>Instant Gratification</strong> design philosophy. It dynamically expands item stack limits server-wide up to <strong>9,999 items</strong> (or custom limits). Leveraging modern Minecraft's VarInt network protocol, mega-stacks synchronize seamlessly between server and client with zero desynchronization, full container safety, hopper protection, and trade GUI safeguards.</p>
-<blockquote><p><strong>1 Jar 1 Version Policy:</strong> I build <strong>1 dedicated JAR for each Minecraft version</strong> (e.g. MC 26.2, MC 26.3). Please download the exact build that matches your Minecraft installation. <strong>Server-Authoritative:</strong> Requires installation on the server. Clients running Fabric will natively display accurate custom stack counts in inventories, while vanilla clients receive synchronized VarInt stack updates!</p></blockquote>
-<p>Part of the <strong>Instant Gratification Collection</strong> — mods that respect the player's time.</p>
-<hr>
-<h2>✨ Features</h2>
-<h3>🚀 Massive Stack Expansion (Up to 9,999)</h3>
-<ul>
-  <li><strong>Universal or Category Limits:</strong> Expand maximum stack limits for building blocks, ores, food, and raw materials from 64 up to <strong>9,999 items per inventory slot</strong>.</li>
-  <li><strong>Modern VarInt Network Protocol:</strong> Built from the ground up for modern Minecraft (26.x+), utilizing VarInt network serialization rather than legacy 1-byte limits. Mega-stacks serialize effortlessly across multiplayer packets with zero data truncation.</li>
-</ul>
-<h3>🛡️ Container &amp; Trade Menu Safeguards</h3>
-<ul>
-  <li><strong>Hopper Drip-Feed Throttling:</strong> Hoppers and droppers under mega-stacks transfer exactly 1 item per standard vanilla transfer tick, ensuring sorting systems, item elevators, and redstone contraptions never overflow or stall.</li>
-  <li><strong>Villager &amp; Merchant Protection:</strong> Prevents trading exploits and inventory overflow when interacting with Wandering Traders and Villagers by dynamically clamping exchange slots to safe standard limits.</li>
-  <li><strong>Crafting Grid Precision:</strong> Shift-clicking crafted items smoothly fills available mega-stacks without scattering leftover items onto the floor.</li>
-</ul>
-<h3>⚙️ Modular Whitelist &amp; Blacklist Tag Engine</h3>
-<ul>
-  <li><strong>Item Exclusions:</strong> Keep specific delicate items unstackable (e.g. Shulker Boxes containing items, Enchanted Books, or custom modded containers) using data-driven tags (<code>#stack_size_adjuster:unstackable_blacklist</code>).</li>
-  <li><strong>Targeted Category Overrides:</strong> Assign custom stack thresholds to specific item categories—for example, 1,000 for raw building materials, 256 for food, and 16 for tools.</li>
-</ul>
-<hr>
-<h2>📊 Inventory Capacity Comparison</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Storage Container</th>
-      <th>Vanilla 64-Cap Limit</th>
-      <th>With 256 Stack Limit</th>
-      <th>With 1,000 Stack Limit</th>
-      <th>With 9,999 Mega-Stacks</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Player Main Inventory (27 slots)</strong></td>
-      <td>1,728 items</td>
-      <td><strong>6,912 items</strong></td>
-      <td><strong>27,000 items</strong></td>
-      <td><strong>269,973 items</strong></td>
-    </tr>
-    <tr>
-      <td><strong>Single Chest (27 slots)</strong></td>
-      <td>1,728 items</td>
-      <td><strong>6,912 items</strong></td>
-      <td><strong>27,000 items</strong></td>
-      <td><strong>269,973 items</strong></td>
-    </tr>
-    <tr>
-      <td><strong>Double Chest (54 slots)</strong></td>
-      <td>3,456 items</td>
-      <td><strong>13,824 items</strong></td>
-      <td><strong>54,000 items</strong></td>
-      <td><strong>539,946 items</strong></td>
-    </tr>
-    <tr>
-      <td><strong>Shulker Box (27 slots)</strong></td>
-      <td>1,728 items</td>
-      <td><strong>6,912 items</strong></td>
-      <td><strong>27,000 items</strong></td>
-      <td><strong>269,973 items</strong></td>
-    </tr>
-    <tr>
-      <td><strong>Ender Chest Capacity</strong></td>
-      <td>1,728 items</td>
-      <td><strong>6,912 items</strong></td>
-      <td><strong>27,000 items</strong></td>
-      <td><strong>269,973 items</strong></td>
-    </tr>
-  </tbody>
-</table>
-<hr>
-<h2>⚙️ Native GameRules &amp; Configuration</h2>
-<p>Configure stack size limits dynamically on the fly:</p>
-<table>
-  <thead>
-    <tr>
-      <th>GameRule Key</th>
-      <th>Type</th>
-      <th>Default</th>
-      <th>Valid Range</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>stack_size_adjuster:max_stack_size</code></td>
-      <td><code>Integer</code></td>
-      <td><code>1000</code></td>
-      <td><code>64 – 9999</code></td>
-      <td>Global maximum stack limit for configured item categories.</td>
-    </tr>
-    <tr>
-      <td><code>stack_size_adjuster:affect_blocks_only</code></td>
-      <td><code>Boolean</code></td>
-      <td><code>false</code></td>
-      <td><code>true / false</code></td>
-      <td>Restricts stack increases strictly to placeable block items.</td>
-    </tr>
-    <tr>
-      <td><code>stack_size_adjuster:enable_food_stacking</code></td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code></td>
-      <td><code>true / false</code></td>
-      <td>Extends mega-stacking to edible food items.</td>
-    </tr>
-    <tr>
-      <td><code>stack_size_adjuster:protect_shulker_boxes</code></td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code></td>
-      <td><code>true / false</code></td>
-      <td>Prevents nesting filled shulker boxes inside mega-stacks.</td>
-    </tr>
-  </tbody>
-</table>
-<hr>
-<h2>📖 In-Depth How-To &amp; Gameplay Playbook</h2>
-<h3>Step 1: Server &amp; Client Installation</h3>
-<ol>
-  <li>Install <strong>Fabric Loader</strong> and <strong>Fabric API</strong> for Minecraft 26.2+ / 26.3+.</li>
-  <li>Drop <code>stack-size-adjuster-x.y.z+<version>.jar</code> into your server and client <code>mods/</code> folders.</li>
-  <li>Launch Minecraft. Building blocks will now automatically stack up to the configured limit!</li>
-</ol>
-<h3>Step 2: Consolidating Storage Warehouses</h3>
-<ul>
-  <li>Walk into your warehouse and shift-click matching items together: watch entire double chests of cobblestone condense into just a few slots.</li>
-  <li>Free up hundreds of chests, dramatically reducing entity and tile-entity rendering lag in your main survival base!</li>
-</ul>
-<h3>Step 3: Pairing with Companion Addons</h3>
-<ul>
-  <li>For stacking drinkable and splash potions, install <strong>Potion Stacker Addon</strong>.</li>
-  <li>For stacking mushroom stews, rabbit soups, and suspicious stews, install <strong>Stew Stacker Addon</strong>.</li>
-  <li>For ground-item lag cleanup, install <strong>Item Clumps</strong>!</li>
-</ul>
-<hr>
-<h2>☕ Support &amp; Creator Community</h2>
-<p>I am an independent solo developer creating lightweight, vanilla-enhancing mods that respect your time and game performance. If Stack Size Adjuster liberates your inventory, consider supporting future development:</p>
+
+# 📦 Stack Size Adjuster
+
+> **"Unshackle Your Inventory. Configurable Stack Limits with High-Performance Drop Protection & Dynamic Font Scaling."**
+
+---
+
+## 📖 Introduction
+
+Minecraft's standard 64-item stack ceiling was established over 15 years ago when the game had only a handful of blocks and crafting recipes. In modern survival, building large structures, massive terraforming projects, or sorting large storage rooms turns inventory management into a chore of dozens of chests and endless hauling trips.
+
+**Stack Size Adjuster** solves the inventory bottleneck under the **Instant Gratification** design philosophy. It dynamically expands item stack limits server-wide across natural item categories (64-stack items, 16-stack items, and 1-stack items) with real-time network synchronization, client-side auto-scaling numbers, and container drop lag prevention.
+
+> **1 Jar 1 Version Policy:** I build **1 dedicated JAR for each Minecraft version** (e.g. 1.20.1, 1.21.1, 1.21.11, 26.1.2, 26.2, 26.3+). Please download the exact build that matches your Minecraft installation.
+> 
+> **Server & Client Architecture:** Install on the server (or singleplayer world) to enable custom stack logic. Clients with the mod installed will benefit from dynamic font auto-scaling in inventory slots and instant GameRule sync!
+
+Part of the **Instant Gratification Collection** — mods designed to streamline your gameplay and respect your time.
+
+---
+
+## ✨ Features
+
+### 🚀 Category-Based Stack Expansion
+- **64-Stack Items (Default: 128):** Expands building blocks, ores, ingots, wood, and standard resources up to any integer limit.
+- **16-Stack Items (Default: 32):** Expands utility items that naturally cap at 16 (ender pearls, snowballs, buckets, signs, eggs) without breaking their identity.
+- **1-Stack Items (Default: 1):** Kept at 1 by default to ensure tools, weapons, and armor retain standard behavior. Server owners can uncap this category at any time if desired.
+- **Uncapped Freedom:** Supports stack sizes up to 2,147,483,647 (Integer.MAX_VALUE), adhering to the Freedom Over Anti-Crash design principle.
+
+### 🛡️ Container Drop Lag Protection
+- Breaking a chest containing thousands of items in vanilla would normally spawn hundreds or thousands of individual item entities, creating severe TPS drops or client stutter.
+- **Cluster Drop System:** Intelligently groups dropped items into a controlled number of item entities per inventory slot (governed by `max_drop_entities`, default 8), preserving full item quantities while keeping server performance smooth.
+
+### 🔤 Dynamic Inventory Font Scaling
+- Numbers with 3, 4, or more digits (like 128, 999, or 9999) normally overflow outside the 16x16 inventory slot boundary.
+- The client-side renderer calculates text width and dynamically scales down high-count numbers so they fit cleanly and legibly inside the item slot.
+
+### ⚡ Real-Time Network Sync & Container Refresh
+- Stack limits synchronize automatically via custom network payloads whenever a player joins or an admin changes GameRules.
+- Open container and inventory screens immediately refresh with the updated limits without requiring a server reboot or player relog.
+
+### 🧩 Addon Ecosystem Compatibility
+- Built-in API hooks allow specialized companion mods to register dedicated per-item overrides:
+  - **Potion Stacker Addon:** Stacks drinkable, splash, and lingering potions, water bottles, and stews.
+  - **Stew Stacker Addon:** Stacks mushroom stews, rabbit soups, beetroot soups, and suspicious stews.
+
+---
+
+## ⚙️ Native GameRules & Configuration
+
+Stack limits can be adjusted in real time using vanilla GameRules:
+
+| GameRule Key | Type | Default | Valid Range | Description |
+| :--- | :---: | :---: | :---: | :--- |
+| `stack-size-adjuster:items_64_limit` | `Integer` | `128` | `1 – 2,147,483,647` | Maximum stack size for items that naturally stack to 64. |
+| `stack-size-adjuster:items_16_limit` | `Integer` | `32` | `1 – 2,147,483,647` | Maximum stack size for items that naturally stack to 16. |
+| `stack-size-adjuster:items_1_limit` | `Integer` | `1` | `1 – 2,147,483,647` | Maximum stack size for items that naturally stack to 1. |
+| `stack-size-adjuster:max_drop_entities` | `Integer` | `8` | `1 – 64` | Maximum item entities spawned per slot when a container breaks. |
+
+### 🖥️ In-Game Configuration Screen (ModMenu & YACL)
+If **ModMenu** and **YetAnotherConfigLib (YACL)** are installed, you can configure these options directly from the client title screen or mods menu:
+- Config file: `config/stack-size-adjuster.json` (acts as baseline defaults for newly generated worlds).
+
+---
+
+## ☕ Support & Creator Community
+
+I am an independent solo developer creating lightweight, vanilla-enhancing mods. If Stack Size Adjuster makes your survival experience more enjoyable, consider supporting future development:
+
 <p align="center">
-<a href="https://ko-fi.com/rifaditya"><img src="https://img.shields.io/badge/Ko--fi-Support_on_Ko--fi-F16061?style=for-the-badge&amp;logo=ko-fi&amp;logoColor=white" alt="Support on Ko-fi"></a>
-<a href="https://sociabuzz.com/rifaditya"><img src="https://img.shields.io/badge/SocioBuzz-Support_Creator-00A651?style=for-the-badge" alt="Support on SocioBuzz"></a>
-<a href="https://saweria.co/rifaditya"><img src="https://img.shields.io/badge/Saweria-Support_Local-FFA500?style=for-the-badge" alt="Support on Saweria"></a>
+  <a href="https://ko-fi.com/rifaditya"><img src="https://img.shields.io/badge/Ko--fi-Support_on_Ko--fi-F16061?style=for-the-badge&amp;logo=ko-fi&amp;logoColor=white" alt="Support on Ko-fi"></a>
+  <a href="https://sociabuzz.com/rifaditya"><img src="https://img.shields.io/badge/SocioBuzz-Support_Creator-00A651?style=for-the-badge" alt="Support on SocioBuzz"></a>
+  <a href="https://saweria.co/rifaditya"><img src="https://img.shields.io/badge/Saweria-Support_Local-FFA500?style=for-the-badge" alt="Support on Saweria"></a>
 </p>
-<blockquote><p><strong>🇮🇩 Indonesian Local Payment Note:</strong> Indonesian supporters can also support my development work directly using local payment options (<strong>GoPay, OVO, Dana, QRIS, LinkAja</strong>) via <strong>Saweria</strong> or <strong>SocioBuzz</strong>!</p></blockquote>
-<p>Join our official Discord community for live development updates, early test builds, and friendly support:</p>
-<ul>
-  <li>💬 <strong>Discord Community:</strong> <a href="https://discord.gg/EV99bgAFqb" target="_blank" rel="noopener">https://discord.gg/EV99bgAFqb</a></li>
-</ul>
-<hr>
-<h2>📜 Metadata &amp; Permissions</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Property</th>
-      <th>Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Mod Name</strong></td>
-      <td>Stack Size Adjuster</td>
-    </tr>
-    <tr>
-      <td><strong>Namespace / Mod ID</strong></td>
-      <td><code>stack_size_adjuster</code></td>
-    </tr>
-    <tr>
-      <td><strong>License</strong></td>
-      <td>GNU General Public License v3.0 (GPLv3)</td>
-    </tr>
-    <tr>
-      <td><strong>Side Safety</strong></td>
-      <td>Server &amp; Client (Network Synchronized)</td>
-    </tr>
-    <tr>
-      <td><strong>Source Code</strong></td>
-      <td><a href="https://github.com/Rifaditya/Instant-Gratification-stack-size-adjuster" target="_blank" rel="noopener">GitHub Repository</a></td>
-    </tr>
-    <tr>
-      <td><strong>Issue Tracker</strong></td>
-      <td><a href="https://github.com/Rifaditya/Instant-Gratification-stack-size-adjuster/issues" target="_blank" rel="noopener">GitHub Issues</a></td>
-    </tr>
-  </tbody>
-</table>
-<blockquote><p><strong>📦 Modpack Permissions &amp; Distribution:</strong><br> You are fully welcome to include this mod in any modpack on any platform! However, the mod file must be downloaded directly through official distribution channels (<strong>Modrinth</strong> or <strong>CurseForge</strong>). Re-uploading, mirroring, or redistributing the original mod JAR to third-party mirror sites, scraper portals, or unauthorized launchers is strictly prohibited. <br><br> <strong>⚖️ License &amp; Fork Guidelines (No Zero-Change Re-uploads):</strong><br> This project is open-source under the <strong>GNU GPLv3</strong>. You are fully encouraged to inspect the code, learn from it, and fork the repository to create genuine modifications, substantial feature expansions, or community ports—provided your project remains open-source under GPLv3 with proper attribution.<br> <strong>However, straight 1:1 re-uploads, clone forks with no meaningful functional changes, or re-publishing identical builds under different project names (e.g. to farm downloads or rewards) are strictly forbidden.</strong></p></blockquote>
-<hr>
+
+> **🇮🇩 Indonesian Local Payment Note:** Indonesian supporters can support my work directly via **Saweria** or **SocioBuzz** using **GoPay, OVO, Dana, QRIS, LinkAja**!
+
+Join my official Discord community for development updates, test builds, and feedback:
+- 💬 **Discord Community:** https://discord.gg/EV99bgAFqb
+
+---
+
+## 📜 Metadata & Permissions
+
+| Property | Value |
+| :--- | :--- |
+| **Mod Name** | Stack Size Adjuster |
+| **Namespace / Mod ID** | `stack-size-adjuster` |
+| **License** | GNU General Public License v3.0 (GPLv3) |
+| **Side Safety** | Server & Client (Network Synchronized) |
+| **Required Dependencies** | Fabric API, Dasik Library |
+| **Optional Dependencies** | ModMenu, YetAnotherConfigLib (YACL) |
+| **Source Code** | [GitHub Repository](https://github.com/Rifaditya/Instant-Gratification-stack-size-adjuster) |
+| **Issue Tracker** | [GitHub Issues](https://github.com/Rifaditya/Instant-Gratification-stack-size-adjuster/issues) |
+
+> **📦 Modpack Permissions & Distribution:**<br>
+> You are fully welcome to include this mod in any modpack! The mod file must be downloaded directly through official distribution channels (**Modrinth** or **CurseForge**). Re-uploading or mirroring the JAR to third-party scraper sites or unauthorized launchers is strictly prohibited.
+> <br><br>
+> **⚖️ License & Fork Guidelines (No Zero-Change Re-uploads):**<br>
+> This project is open-source under the **GNU GPLv3**. You are free to inspect the code, learn from it, and fork it for genuine modifications or substantial feature additions under GPLv3 with proper attribution.<br>
+> **Straight 1:1 re-uploads, clone forks without meaningful functional additions, or re-publishing identical builds under different project names are strictly forbidden.**
+
+---
+
 <div align="center">
-<strong>Made with ❤️ for the Minecraft community</strong>
-<em>Part of the Instant Gratification Collection</em>
+
+**Made with ❤️ for the Minecraft community**
+
+*Part of the Instant Gratification Collection*
+
 </div>

@@ -8,8 +8,10 @@ This directory contains dedicated atomic ticket files for **Stack Size Adjuster*
 
 | Ticket ID | Category | Title | Status | File Link |
 | :--- | :--- | :--- | :--- | :--- |
+| `[BL-SZA-005]` | `[TECH_DEBT]` | Scaffold Anchor 7: Stack Size Adjuster v26.x (rolling 26.3+) | `📌 DEFERRED` | [`BL-SZA-005.md`](BL-SZA-005.md) |
 | `[BL-SZA-001]` | `[TECH_DEBT]` | Adopt 5-Pillar Testing & Sidedness Verification Harness | `📌 DEFERRED` | [`BL-SZA-001.md`](BL-SZA-001.md) |
 | `[BL-SZA-002]` | `[TECH_DEBT]` | Migrate Command Suite to Universal Brigadier Command Framework | `📌 DEFERRED` | [`BL-SZA-002.md`](BL-SZA-002.md) |
+| `[BL-SZA-006]` | `[TECH_DEBT]` | Wiki Audit & Update to Latest Version: Stack Size Adjuster | `📌 DEFERRED` | [BL-SZA-006.md](BL-SZA-006.md) |
 
 ---
 
