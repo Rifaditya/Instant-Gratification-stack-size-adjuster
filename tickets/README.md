@@ -8,14 +8,15 @@ This directory contains dedicated atomic ticket files for **Stack Size Adjuster*
 
 | Ticket ID | Category | Title | Status | File Link |
 | :--- | :--- | :--- | :--- | :--- |
-| `[BL-SZA-005]` | `[TECH_DEBT]` | Scaffold Anchor 7: Stack Size Adjuster v26.x (rolling 26.3+) | `📌 DEFERRED` | [`BL-SZA-005.md`](BL-SZA-005.md) |
 | `[BL-SZA-001]` | `[TECH_DEBT]` | Adopt 5-Pillar Testing & Sidedness Verification Harness | `📌 DEFERRED` | [`BL-SZA-001.md`](BL-SZA-001.md) |
 | `[BL-SZA-002]` | `[TECH_DEBT]` | Migrate Command Suite to Universal Brigadier Command Framework | `📌 DEFERRED` | [`BL-SZA-002.md`](BL-SZA-002.md) |
-| `[BL-SZA-006]` | `[TECH_DEBT]` | Wiki Audit & Update to Latest Version: Stack Size Adjuster | `📌 DEFERRED` | [BL-SZA-006.md](BL-SZA-006.md) |
+| `[BL-SZA-003]` | `[TECH_DEBT]` | Migrate Client Configuration GUI to UniversalConfigScreen | `📌 DEFERRED` | [`BL-SZA-003.md`](BL-SZA-003.md) |
+| `[BL-SZA-004]` | `[GOVERNANCE]` | Storefront Reconciliation: Align Mod Pages with Current Public Release | `📌 DEFERRED` | [`BL-SZA-004.md`](BL-SZA-004.md) |
+| `[BL-SZA-005]` | `[TECH_DEBT]` | Scaffold Anchor 7: Stack Size Adjuster v26.x (rolling 26.3+) | `📌 DEFERRED` | [`BL-SZA-005.md`](BL-SZA-005.md) |
+| `[BL-SZA-006]` | `[TECH_DEBT]` | Wiki Audit & Update to Latest Version: Stack Size Adjuster | `📌 DEFERRED` | [`BL-SZA-006.md`](BL-SZA-006.md) |
+| `[BL-SZA-007]` | `[FEATURE]` | Built-In Data-Driven Stew Stacking (Fold Stew Stacker Addon into Core) | `📌 DEFERRED` | [`BL-SZA-007.md`](BL-SZA-007.md) |
 
 ---
 
 > [!NOTE]
 > Worker subagents should be directed to individual ticket files to minimize prompt token overhead.
-| `[BL-SZA-003]` | `[TECH_DEBT]` | Migrate Client Configuration GUI to UniversalConfigScreen | `📌 DEFERRED` | [BL-SZA-003.md](BL-SZA-003.md) |
-| `[BL-SZA-004]` | `[GOVERNANCE]` | Storefront Reconciliation: Align Mod Pages with Current Public Release | `📌 DEFERRED` | [BL-SZA-004.md](BL-SZA-004.md) |
